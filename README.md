@@ -41,6 +41,9 @@ the current exports.
 **aerokastell.ai:** set up domain forwarding → `https://aerokastell.com` (GitHub Pages
 serves one custom domain per site; the second domain redirects).
 
+**aerokastell.de:** also a **redirect to `https://aerokastell.com`** — no site is built for
+it (founder decision 2026-11-20). Nothing to deploy here for `.de`.
+
 **Email:** set up Namecheap's free email forwarding (`hello@aerokastell.com` → your inbox)
 so the page's mailto link works.
 
