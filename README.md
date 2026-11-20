@@ -38,11 +38,13 @@ the current exports.
 | A | @ | 185.199.111.153 |
 | CNAME | www | `<github-username>.github.io` |
 
-**aerokastell.ai:** set up domain forwarding → `https://aerokastell.com` (GitHub Pages
-serves one custom domain per site; the second domain redirects).
+**aerokastell.ai:** **not registered** (corrected 2026-11-20). If it is ever reserved, set
+domain forwarding → `https://aerokastell.com` (GitHub Pages serves one custom domain per
+site; other domains redirect).
 
-**aerokastell.de:** also a **redirect to `https://aerokastell.com`** — no site is built for
-it (founder decision 2026-11-20). Nothing to deploy here for `.de`.
+**aerokastell.de:** planned as a **redirect to `https://aerokastell.com`** — no site is built
+for it (founder decision 2026-11-20; confirm the registration is actually in place). Nothing
+to deploy here for `.de`.
 
 **Email:** set up Namecheap's free email forwarding (`hello@aerokastell.com` → your inbox)
 so the page's mailto link works.
