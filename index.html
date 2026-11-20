@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AeroKastell — Evidence, not just alarms.</title>
+  <meta name="description" content="AeroKastell is building civilian drone detection for critical sites: detect, identify, locate, prove. Quietly, precisely — and in stealth mode for now.">
+  <link rel="canonical" href="https://aerokastell.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AeroKastell">
+  <meta property="og:title" content="AeroKastell — Evidence, not just alarms.">
+  <meta property="og:description" content="Civilian drone detection for critical sites. Building in stealth mode — first light soon.">
+  <meta property="og:url" content="https://aerokastell.com/">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0B1F33">
+  <link rel="icon" href="assets/favicon.ico" sizes="48x16">
+  <link rel="icon" type="image/svg+xml" href="assets/ak-favicon.svg">
+  <link rel="apple-touch-icon" href="assets/ak-apple-touch-icon-180.png">
+  <style>
+    @font-face {
+      font-family: "Lato"; font-style: normal; font-weight: 400;
+      src: url("assets/fonts/lato-400.woff2") format("woff2"); font-display: swap;
+    }
+    @font-face {
+      font-family: "Lato"; font-style: normal; font-weight: 700;
+      src: url("assets/fonts/lato-700.woff2") format("woff2"); font-display: swap;
+    }
+    @font-face {
+      font-family: "Lato"; font-style: normal; font-weight: 900;
+      src: url("assets/fonts/lato-900.woff2") format("woff2"); font-display: swap;
+    }
+    :root {
+      --night: #0B1F33;
+      --paper: #F4F2EE;
+      --steel-light: #7D8D9C;
+      --red: #E0383E;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      background: var(--night);
+      color: var(--paper);
+      font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .hero { position: relative; min-height: 100vh; overflow: hidden; }
+    .hero-bg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: right center;  /* the motion lives on the right */
+      opacity: .8;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-bg { display: none; }
+      .hero { background: var(--night) url("assets/hero/ak-hero-loop-v01-poster.jpg") right center / cover no-repeat; }
+    }
+    .content {
+      position: relative; z-index: 1;
+      max-width: 40rem; padding: 8rem 4rem 4rem;
+      display: flex; flex-direction: column; min-height: 100vh;
+    }
+    .logo { height: 52px; width: auto; margin-bottom: auto; }
+    .eyebrow {
+      margin-top: 3rem;
+      font-size: .8rem; font-weight: 700; letter-spacing: .28em;
+      color: var(--steel-light); text-transform: uppercase;
+    }
+    .eyebrow::after {
+      content: ""; display: block; width: 3rem; height: 2px;
+      background: var(--red); margin-top: .9rem;
+    }
+    h1 {
+      margin-top: 1.6rem;
+      font-weight: 900; font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.12; letter-spacing: -0.01em;
+    }
+    .lede {
+      margin-top: 1.4rem;
+      font-size: clamp(1rem, 1.6vw, 1.15rem); line-height: 1.65;
+      color: var(--paper); max-width: 34rem;
+    }
+    .lede strong { font-weight: 700; }
+    .contact { margin-top: 2.2rem; font-size: 1rem; color: var(--steel-light); }
+    .contact a {
+      color: var(--paper); font-weight: 700; text-decoration: none;
+      border-bottom: 1px solid var(--red);
+    }
+    .contact a:hover { color: var(--red); }
+    footer {
+      margin-top: auto; padding-top: 3rem;
+      font-size: .82rem; color: var(--steel-light);
+    }
+    footer .domain { color: var(--steel-light); }
+    @media (max-width: 640px) {
+      .content { padding: 4rem 2rem 2.5rem; }
+      .logo { height: 44px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <video class="hero-bg" autoplay muted loop playsinline preload="auto"
+           poster="assets/hero/ak-hero-loop-v01-poster.jpg" aria-hidden="true">
+      <source src="assets/hero/ak-hero-loop-v01.webm" type="video/webm">
+      <source src="assets/hero/ak-hero-loop-v01.mp4" type="video/mp4">
+    </video>
+    <div class="content">
+      <img class="logo" src="assets/ak-logo-horizontal-reversed-v4.svg" alt="AeroKastell">
+      <p class="eyebrow">Building in stealth mode</p>
+      <h1>Evidence, not just&nbsp;alarms.</h1>
+      <p class="lede">
+        AeroKastell is building a new way to protect critical sites from drones:
+        <strong>detect</strong> it, <strong>identify</strong> it, <strong>locate</strong> the
+        pilot, <strong>prove</strong> it — quietly, precisely, and by the book.
+        First light soon.
+      </p>
+      <p class="contact">Want to talk early? <a href="mailto:hello@aerokastell.com">hello@aerokastell.com</a></p>
+      <footer>
+        © 2026 AeroKastell · All rights reserved · <span class="domain">aerokastell.com</span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>
