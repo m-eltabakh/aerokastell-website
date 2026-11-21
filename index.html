@@ -42,7 +42,9 @@
       --line: #E2DDD4;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
     body {
       background: var(--paper);
       color: var(--ink);
@@ -65,10 +67,12 @@
     }
     .hero .content {
       position: relative; z-index: 1;
-      max-width: 40rem; padding: 5rem clamp(1.25rem, 4vw, 4rem) 4rem;
+      max-width: 64rem; margin: 0 auto;  /* same column as .wrap, so left edges line up */
+      padding: 5rem clamp(1.25rem, 4vw, 2.5rem) 4rem;
       display: flex; flex-direction: column; min-height: 100vh;
     }
-    .logo { height: 52px; width: auto; margin-bottom: auto; }
+    .hero .content > * { max-width: 34rem; }  /* the original text measure; keeps clear of the motion on the right */
+    .logo { height: 52px; width: auto; margin-bottom: auto; align-self: flex-start; }
     .eyebrow {
       margin-top: 3rem;
       font-size: .8rem; font-weight: 700; letter-spacing: .28em;
@@ -132,10 +136,11 @@
     .reason h3 { font-weight: 900; font-size: 1.15rem; line-height: 1.3; }
     .reason h3 span { color: var(--red-text); }
     .reason p { margin-top: .6rem; font-size: .98rem; color: var(--steel); }
-    .source-note { margin-top: 2.2rem; font-size: .8rem; color: var(--steel-light); }
+    .source-note { margin-top: 2.2rem; font-size: .8rem; color: var(--steel); }
     .source-note a { color: var(--steel); }
 
     .diffs { margin-top: 2.5rem; display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+    #different .diffs { grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }  /* four cards: 2 x 2, never 3 + 1 */
     .diff {
       background: var(--card); border: 1px solid var(--line); border-radius: 14px;
       padding: 1.5rem 1.4rem;
@@ -197,7 +202,8 @@
 </head>
 <body>
   <!-- ============================== HERO ============================== -->
-  <main class="hero">
+  <main>
+  <section class="hero">
     <video class="hero-bg" autoplay muted loop playsinline preload="auto"
            poster="assets/hero/ak-hero-loop-v01-poster.jpg" aria-hidden="true">
       <source src="assets/hero/ak-hero-loop-v01.webm" type="video/webm">
@@ -216,7 +222,7 @@
       <p class="contact">Want to talk early? <a href="mailto:contact@aerokastell.com">contact@aerokastell.com</a></p>
       <p class="more"><a href="#what">What we're building ↓</a></p>
     </div>
-  </main>
+  </section>
 
   <!-- ============================== WHAT ============================== -->
   <section class="light" id="what">
@@ -274,7 +280,7 @@
       </div>
       <p class="source-note">
         Reference: Commission Guidelines on the application of Article 13(5) of Directive (EU) 2022/2557
-        (C/2026/3712, 13 July 2026), full text at <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:C_202603712" rel="noopener" target="_blank">eur-lex.europa.eu</a>
+        (C/2026/3712, 13 July 2026), full text at <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:C:202603712" rel="noopener" target="_blank">eur-lex.europa.eu</a>
       </p>
     </div>
   </section>
@@ -345,7 +351,7 @@
   <section class="light" id="who">
     <div class="wrap">
       <p class="kicker">Who it's for</p>
-      <h2>The operators of what keeps the country running.</h2>
+      <h2>The operators of what keeps Europe running.</h2>
       <div class="chips">
         <span class="chip">Energy &amp; utilities</span>
         <span class="chip">Water</span>
@@ -372,6 +378,7 @@
       <a class="cta" href="mailto:contact@aerokastell.com">contact@aerokastell.com</a>
     </div>
   </section>
+  </main>
 
   <!-- ============================== FOOTER ============================== -->
   <footer>
