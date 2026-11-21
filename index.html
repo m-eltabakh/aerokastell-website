@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AeroKastell: Evidence, not just alarms.</title>
-  <meta name="description" content="Drone detection for critical sites: detect, identify, locate the pilot, prove. Integrates with your existing cameras and security systems. Stealth mode for now.">
+  <meta name="description" content="Drone detection for critical sites: detect, identify, locate the pilot, prove. Integrates with your existing cameras and security systems.">
   <link rel="canonical" href="https://aerokastell.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AeroKastell">
   <meta property="og:title" content="AeroKastell: Evidence, not just alarms.">
-  <meta property="og:description" content="Drone detection for critical sites: detect, identify, locate, prove. Works with your existing cameras and security systems. Stealth mode for now.">
+  <meta property="og:description" content="Drone detection for critical sites: detect, identify, locate, prove. Works with your existing cameras and security systems.">
   <meta property="og:url" content="https://aerokastell.com/">
   <meta name="twitter:card" content="summary">
   <meta name="theme-color" content="#0B1F33">
@@ -73,11 +73,7 @@
     }
     .hero .content > * { max-width: 34rem; }  /* the original text measure; keeps clear of the motion on the right */
     .logo { height: 64px; width: auto; margin-bottom: auto; align-self: flex-start; }
-    .eyebrow {
-      margin-top: 3rem;
-      font-size: .8rem; font-weight: 700; letter-spacing: .28em;
-      color: var(--steel-light); text-transform: uppercase;
-    }
+    .hero-rule { width: 3rem; height: 2px; background: var(--red); margin: 3rem 0 .9rem; }
     .eyebrow::after {
       content: ""; display: block; width: 3rem; height: 2px;
       background: var(--red); margin-top: .9rem;
@@ -180,11 +176,6 @@
     /* ---------- dark close ---------- */
     .close-band { background: var(--night); color: var(--paper); padding: clamp(4rem, 8vw, 6.5rem) 0; }
     .close-band h2 { color: var(--paper); }
-    .close-band .kicker { color: var(--steel-light); }
-    .close-band .kicker::after {
-      content: ""; display: block; width: 3rem; height: 2px;
-      background: var(--red); margin-top: .7rem;
-    }
     .close-band p.big {
       margin-top: 1.3rem; font-size: clamp(1.05rem, 1.8vw, 1.25rem);
       line-height: 1.65; color: var(--paper); max-width: 42rem;
@@ -225,7 +216,7 @@
     </video>
     <div class="content">
       <img class="logo" src="assets/ak-logo-horizontal-reversed-v4.svg" alt="AeroKastell">
-      <p class="eyebrow">Building in stealth mode</p>
+      <div class="hero-rule"></div>
       <h1>Evidence, not just&nbsp;alarms.</h1>
       <p class="lede">
         AeroKastell protects critical sites from drones:
@@ -394,7 +385,6 @@
   <!-- ============================== CLOSE ============================== -->
   <section class="close-band" id="contact">
     <div class="wrap">
-      <p class="kicker">Building in stealth mode</p>
       <h2>Careful, not loud.</h2>
       <p class="big">
         We're building AeroKastell deliberately, and talking to a small group of
