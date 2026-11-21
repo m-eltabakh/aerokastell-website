@@ -72,7 +72,7 @@
       display: flex; flex-direction: column; min-height: 100vh;
     }
     .hero .content > * { max-width: 34rem; }  /* the original text measure; keeps clear of the motion on the right */
-    .logo { height: 52px; width: auto; margin-bottom: auto; align-self: flex-start; }
+    .logo { height: 64px; width: auto; margin-bottom: auto; align-self: flex-start; }
     .eyebrow {
       margin-top: 3rem;
       font-size: .8rem; font-weight: 700; letter-spacing: .28em;
@@ -104,7 +104,7 @@
     .more a:hover { color: #fff; border-color: var(--red); }
     @media (max-width: 640px) {
       .hero .content { padding: 3rem clamp(1.25rem, 4vw, 2.5rem) 2.5rem; }
-      .logo { height: 44px; }
+      .logo { height: 52px; }
     }
 
     /* ---------- light sections ---------- */
@@ -162,6 +162,20 @@
       font-weight: 700; font-size: clamp(1.05rem, 1.8vw, 1.2rem); line-height: 1.5;
     }
     .bridge span { color: var(--red-text); }
+
+    /* ---------- watch (video + name story) ---------- */
+    .video-frame {
+      max-width: 56rem; margin: 2.2rem auto 0; aspect-ratio: 16 / 9;
+      border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+      background: var(--night);
+    }
+    .video-frame video { width: 100%; height: 100%; display: block; }
+    .name-story {
+      margin-top: 1.8rem; font-size: 1.02rem; line-height: 1.6; color: var(--steel);
+      max-width: 46rem;
+    }
+    .name-story strong { color: var(--ink); }
+    .name-story em { font-style: italic; }
 
     /* ---------- dark close ---------- */
     .close-band { background: var(--night); color: var(--paper); padding: clamp(4rem, 8vw, 6.5rem) 0; }
@@ -361,6 +375,24 @@
         <span class="chip">Ports &amp; harbours</span>
         <span class="chip">Public administration</span>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================== WATCH ============================== -->
+  <section class="light" id="watch">
+    <div class="wrap">
+      <p class="kicker">Watch</p>
+      <h2>The idea, in half a minute.</h2>
+      <div class="video-frame">
+        <video controls preload="metadata" poster="assets/video/ak-website-video-v01-poster.jpg">
+          <source src="assets/video/ak-website-video-v01.mp4" type="video/mp4">
+        </video>
+      </div>
+      <p class="name-story">
+        <strong>Why "AeroKastell"?</strong> A <em>kastell</em> is a Roman fort: a fortified
+        post that kept watch over the frontier. We put that watchtower in the sky, over the
+        sites Europe depends on.
+      </p>
     </div>
   </section>
 
