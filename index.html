@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://aerokastell.com/">
   <meta name="twitter:card" content="summary">
   <meta name="theme-color" content="#0B1F33">
-  <link rel="icon" href="assets/favicon.ico" sizes="48x16">
+  <link rel="icon" href="assets/favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="icon" type="image/svg+xml" href="assets/ak-favicon.svg">
   <link rel="apple-touch-icon" href="assets/ak-apple-touch-icon-180.png">
   <style>
@@ -38,6 +38,7 @@
       --steel: #5B6B7A;
       --steel-light: #7D8D9C;
       --red: #E0383E;
+      --red-text: #C42F34;   /* web-only: signal red darkened to pass WCAG AA for small text */
       --line: #E2DDD4;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -93,10 +94,10 @@
       color: var(--paper); font-weight: 700; text-decoration: none;
       border-bottom: 1px solid var(--red);
     }
-    .contact a:hover { color: var(--red); }
+    .contact a:hover { color: #fff; }
     .more { margin-top: auto; padding-top: 3rem; font-size: .85rem; color: var(--steel-light); }
     .more a { color: var(--paper); text-decoration: none; border-bottom: 1px solid var(--steel-light); }
-    .more a:hover { color: var(--red); border-color: var(--red); }
+    .more a:hover { color: #fff; border-color: var(--red); }
     @media (max-width: 640px) {
       .hero .content { padding: 3rem clamp(1.25rem, 4vw, 2.5rem) 2.5rem; }
       .logo { height: 44px; }
@@ -107,7 +108,7 @@
     section.light + section.light { border-top: 1px solid var(--line); }
     .kicker {
       font-size: .8rem; font-weight: 700; letter-spacing: .24em;
-      text-transform: uppercase; color: var(--red); margin-bottom: .9rem;
+      text-transform: uppercase; color: var(--red-text); margin-bottom: .9rem;
     }
     h2 { font-weight: 900; font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.2; }
     .section-lede { margin-top: 1rem; font-size: 1.08rem; color: var(--steel); max-width: 46rem; }
@@ -121,7 +122,7 @@
       padding: 1.4rem 1.3rem 1.5rem;
     }
     .step .no {
-      display: inline-block; font-weight: 900; font-size: .95rem; color: var(--red);
+      display: inline-block; font-weight: 900; font-size: .95rem; color: var(--red-text);
       letter-spacing: .12em; margin-bottom: .55rem;
     }
     .step h3 { font-weight: 900; font-size: 1.25rem; }
@@ -129,7 +130,7 @@
 
     .reasons { margin-top: 2.5rem; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
     .reason h3 { font-weight: 900; font-size: 1.15rem; line-height: 1.3; }
-    .reason h3 span { color: var(--red); }
+    .reason h3 span { color: var(--red-text); }
     .reason p { margin-top: .6rem; font-size: .98rem; color: var(--steel); }
     .source-note { margin-top: 2.2rem; font-size: .8rem; color: var(--steel-light); }
     .source-note a { color: var(--steel); }
@@ -140,7 +141,7 @@
       padding: 1.5rem 1.4rem;
     }
     .diff h3 { font-weight: 900; font-size: 1.12rem; }
-    .diff h3 em { font-style: normal; color: var(--red); }
+    .diff h3 em { font-style: normal; color: var(--red-text); }
     .diff p { margin-top: .55rem; font-size: .95rem; color: var(--steel); }
 
     .chips { margin-top: 1.8rem; display: flex; flex-wrap: wrap; gap: .7rem; }
@@ -152,6 +153,11 @@
     /* ---------- dark close ---------- */
     .close-band { background: var(--night); color: var(--paper); padding: clamp(4rem, 8vw, 6.5rem) 0; }
     .close-band h2 { color: var(--paper); }
+    .close-band .kicker { color: var(--steel-light); }
+    .close-band .kicker::after {
+      content: ""; display: block; width: 3rem; height: 2px;
+      background: var(--red); margin-top: .7rem;
+    }
     .close-band p.big {
       margin-top: 1.3rem; font-size: clamp(1.05rem, 1.8vw, 1.25rem);
       line-height: 1.65; color: var(--paper); max-width: 42rem;
@@ -159,16 +165,27 @@
     .close-band .muted { color: var(--steel-light); margin-top: .6rem; }
     .cta {
       display: inline-block; margin-top: 2.2rem;
-      background: var(--red); color: #fff; font-weight: 700; text-decoration: none;
+      background: var(--red-text); color: #fff; font-weight: 700; text-decoration: none;
       padding: .9rem 1.8rem; border-radius: 10px; font-size: 1.02rem;
     }
-    .cta:hover { background: #C42F34; }
+    .cta:hover { background: #A8262B; }
 
     /* ---------- footer ---------- */
     footer { background: var(--night); color: var(--steel-light); padding: 0 0 2.5rem; font-size: .82rem; }
     footer .wrap { border-top: 1px solid var(--night-soft); padding-top: 1.6rem; }
     footer a { color: var(--steel-light); }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AeroKastell",
+    "url": "https://aerokastell.com/",
+    "logo": "https://aerokastell.com/assets/ak-apple-touch-icon-180.png",
+    "description": "Drone detection for critical sites: detect, identify, locate, prove.",
+    "slogan": "Evidence, not just alarms."
+  }
+  </script>
 </head>
 <body>
   <!-- ============================== HERO ============================== -->
@@ -216,7 +233,7 @@
         <div class="step">
           <span class="no">03</span>
           <h3>Locate</h3>
-          <p>The operator on the ground is found, so the response can start where it matters: at the person, not the machine.</p>
+          <p>The pilot on the ground is located, so the response can start where it matters: at the person, not the machine.</p>
         </div>
         <div class="step">
           <span class="no">04</span>
@@ -257,19 +274,19 @@
   <section class="light" id="different">
     <div class="wrap">
       <p class="kicker">Why we're different</p>
-      <h2>Built for the gap between the toy and the tank.</h2>
+      <h2>Not a warning box. Not a battlefield system.</h2>
       <div class="diffs">
         <div class="diff">
           <h3>Sees what others <em>miss</em>.</h3>
-          <p>Most systems detect a drone by its radio signal. Silent drones, the ones that matter most, walk straight past them. We detect aircraft by their physical presence, so silence changes nothing.</p>
+          <p>Most systems detect a drone by its radio signal. Silent drones, the ones that matter most, walk straight past them. We detect the drone by its physical presence, so silence changes nothing.</p>
         </div>
         <div class="diff">
           <h3>Evidence, not just <em>alarms</em>.</h3>
-          <p>An alarm nobody can verify is a cost. Every detection is documented and verifiable, for site management, for insurers, for the authorities.</p>
+          <p>An alarm nobody can verify proves nothing. Every detection is documented and verifiable, for site management, for insurers, for the authorities.</p>
         </div>
         <div class="diff">
           <h3>Lawful by <em>design</em>.</h3>
-          <p>We detect and document. We don't jam and we don't shoot: the response stays with the authorities, exactly where the law puts it.</p>
+          <p>We detect and document. We don't jam, and we don't shoot drones down: the response stays with the authorities, exactly where the law puts it.</p>
         </div>
         <div class="diff">
           <h3>Built for every critical <em>site</em>.</h3>
