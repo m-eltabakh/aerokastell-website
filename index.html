@@ -6,6 +6,9 @@
   <title>AeroKastell: Evidence, not just alarms.</title>
   <meta name="description" content="Drone detection for critical sites: detect, identify, locate the pilot, prove. Integrates with your existing VMS and PSIM.">
   <link rel="canonical" href="https://aerokastell.com/">
+  <link rel="alternate" hreflang="en" href="https://aerokastell.com/">
+  <link rel="alternate" hreflang="de" href="https://aerokastell.com/de/">
+  <link rel="alternate" hreflang="x-default" href="https://aerokastell.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AeroKastell">
   <meta property="og:title" content="AeroKastell: Evidence, not just alarms.">
@@ -73,6 +76,14 @@
     }
     .hero .content > * { max-width: 34rem; }  /* the original text measure; keeps clear of the motion on the right */
     .logo { height: 64px; width: auto; margin-bottom: auto; align-self: flex-start; }
+    .lang {
+      position: absolute; top: 1.2rem; right: 1.4rem; z-index: 2;
+      font-size: .82rem; font-weight: 700; letter-spacing: .14em;
+      color: var(--steel-light); text-decoration: none;
+      border: 1px solid rgba(125, 141, 156, .5); border-radius: 999px;
+      padding: .3rem .85rem;
+    }
+    .lang:hover { color: #fff; border-color: var(--red); }
     .hero-rule { width: 3rem; height: 2px; background: var(--red); margin: 3rem 0 .9rem; }
     .eyebrow::after {
       content: ""; display: block; width: 3rem; height: 2px;
@@ -209,6 +220,7 @@
   <!-- ============================== HERO ============================== -->
   <main>
   <section class="hero">
+    <a class="lang" href="de/index.html" lang="de" hreflang="de">DE</a>
     <video class="hero-bg" autoplay muted loop playsinline preload="auto"
            poster="assets/hero/ak-hero-loop-v02-poster.jpg" aria-hidden="true">
       <source src="assets/hero/ak-hero-loop-v02.webm" type="video/webm">
