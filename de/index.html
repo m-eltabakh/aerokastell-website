@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AeroKastell: Beweise, nicht nur Alarme.</title>
+  <meta name="description" content="Drohnenerkennung für kritische Standorte: erkennen, identifizieren, den Piloten lokalisieren, beweisen. Integriert sich in Ihre bestehenden VMS- und PSIM-Systeme.">
+  <link rel="canonical" href="https://aerokastell.com/de/">
+  <link rel="alternate" hreflang="en" href="https://aerokastell.com/">
+  <link rel="alternate" hreflang="de" href="https://aerokastell.com/de/">
+  <link rel="alternate" hreflang="x-default" href="https://aerokastell.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AeroKastell">
+  <meta property="og:title" content="AeroKastell: Beweise, nicht nur Alarme.">
+  <meta property="og:description" content="Drohnenerkennung für kritische Standorte: erkennen, identifizieren, lokalisieren, beweisen. Funktioniert mit Ihren bestehenden VMS- und PSIM-Systemen.">
+  <meta property="og:url" content="https://aerokastell.com/de/">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0B1F33">
+  <link rel="icon" href="../assets/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" type="image/svg+xml" href="../assets/ak-favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/ak-apple-touch-icon-180.png">
+  <style>
+    @font-face {
+      font-family: "Lato"; font-style: normal; font-weight: 400;
+      src: url("../assets/fonts/lato-400.woff2") format("woff2"); font-display: swap;
+    }
+    @font-face {
+      font-family: "Lato"; font-style: normal; font-weight: 700;
+      src: url("../assets/fonts/lato-700.woff2") format("woff2"); font-display: swap;
+    }
+    @font-face {
+      font-family: "Lato"; font-style: normal; font-weight: 900;
+      src: url("../assets/fonts/lato-900.woff2") format("woff2"); font-display: swap;
+    }
+    :root {
+      --night: #0B1F33;
+      --night-soft: #12304F;
+      --paper: #F4F2EE;
+      --card: #FFFFFF;
+      --ink: #0B1F33;
+      --steel: #5B6B7A;
+      --steel-light: #7D8D9C;
+      --red: #E0383E;
+      --red-text: #C42F34;   /* web-only: signal red darkened to pass WCAG AA for small text */
+      --line: #E2DDD4;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    .wrap { max-width: 64rem; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+
+    /* ---------- language switcher ---------- */
+    .lang {
+      position: absolute; top: 1.2rem; right: 1.4rem; z-index: 2;
+      font-size: .82rem; font-weight: 700; letter-spacing: .14em;
+      color: var(--steel-light); text-decoration: none;
+      border: 1px solid rgba(125, 141, 156, .5); border-radius: 999px;
+      padding: .3rem .85rem;
+    }
+    .lang:hover { color: #fff; border-color: var(--red); }
+
+    /* ---------- hero ---------- */
+    .hero { position: relative; min-height: 100vh; overflow: hidden; background: var(--night); color: var(--paper); }
+    .hero-bg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: right center;  /* the motion lives on the right */
+      opacity: .8;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-bg { display: none; }
+      .hero { background: var(--night) url("../assets/hero/ak-hero-loop-v02-poster.jpg") right center / cover no-repeat; }
+    }
+    .hero .content {
+      position: relative; z-index: 1;
+      max-width: 64rem; margin: 0 auto;  /* same column as .wrap, so left edges line up */
+      padding: 5rem clamp(1.25rem, 4vw, 2.5rem) 4rem;
+      display: flex; flex-direction: column; min-height: 100vh;
+    }
+    .hero .content > * { max-width: 34rem; }  /* the original text measure; keeps clear of the motion on the right */
+    .logo { height: 64px; width: auto; margin-bottom: auto; align-self: flex-start; }
+    .hero-rule { width: 3rem; height: 2px; background: var(--red); margin: 3rem 0 .9rem; }
+    .eyebrow::after {
+      content: ""; display: block; width: 3rem; height: 2px;
+      background: var(--red); margin-top: .9rem;
+    }
+    h1 {
+      margin-top: 1.6rem;
+      font-weight: 900; font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.12; letter-spacing: -0.01em;
+    }
+    .lede {
+      margin-top: 1.4rem;
+      font-size: clamp(1rem, 1.6vw, 1.15rem); line-height: 1.65;
+      max-width: 34rem;
+    }
+    .lede strong { font-weight: 700; }
+    .contact { margin-top: 2.2rem; font-size: 1rem; color: var(--steel-light); }
+    .contact a {
+      color: var(--paper); font-weight: 700; text-decoration: none;
+      border-bottom: 1px solid var(--red);
+    }
+    .contact a:hover { color: #fff; }
+    .more { margin-top: auto; padding-top: 3rem; font-size: .85rem; color: var(--steel-light); }
+    .more a { color: var(--paper); text-decoration: none; border-bottom: 1px solid var(--steel-light); }
+    .more a:hover { color: #fff; border-color: var(--red); }
+    @media (max-width: 640px) {
+      .hero .content { padding: 3rem clamp(1.25rem, 4vw, 2.5rem) 2.5rem; }
+      .logo { height: 52px; }
+    }
+
+    /* ---------- light sections ---------- */
+    section.light { padding: clamp(3.5rem, 7vw, 6rem) 0; }
+    section.light + section.light { border-top: 1px solid var(--line); }
+    .kicker {
+      font-size: .8rem; font-weight: 700; letter-spacing: .24em;
+      text-transform: uppercase; color: var(--red-text); margin-bottom: .9rem;
+    }
+    h2 { font-weight: 900; font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.2; }
+    .section-lede { margin-top: 1rem; font-size: 1.08rem; color: var(--steel); max-width: 46rem; }
+
+    .steps {
+      margin-top: 2.5rem; display: grid; gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    }
+    .step {
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+      padding: 1.4rem 1.3rem 1.5rem;
+    }
+    .step .no {
+      display: inline-block; font-weight: 900; font-size: .95rem; color: var(--red-text);
+      letter-spacing: .12em; margin-bottom: .55rem;
+    }
+    .step h3 { font-weight: 900; font-size: 1.25rem; }
+    .step p { margin-top: .5rem; font-size: .95rem; color: var(--steel); }
+
+    .reasons { margin-top: 2.5rem; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+    .reason h3 { font-weight: 900; font-size: 1.15rem; line-height: 1.3; }
+    .reason h3 span { color: var(--red-text); }
+    .reason p { margin-top: .6rem; font-size: .98rem; color: var(--steel); }
+    .source-note { margin-top: 2.2rem; font-size: .8rem; color: var(--steel); }
+    .source-note a { color: var(--steel); }
+
+    .diffs { margin-top: 2.5rem; display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+    #different .diffs { grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }  /* four cards: 2 x 2, never 3 + 1 */
+    .diff {
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+      padding: 1.5rem 1.4rem;
+    }
+    .diff h3 { font-weight: 900; font-size: 1.12rem; }
+    .diff h3 em { font-style: normal; color: var(--red-text); }
+    .diff p { margin-top: .55rem; font-size: .95rem; color: var(--steel); }
+
+    .chips { margin-top: 1.8rem; display: flex; flex-wrap: wrap; gap: .7rem; }
+    .chip {
+      background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+      padding: .45rem 1.1rem; font-size: .92rem; font-weight: 700; color: var(--ink);
+    }
+
+    /* ---------- gap section ---------- */
+    .bridge {
+      margin-top: 2.2rem; padding: 1.4rem 1.6rem;
+      border-left: 3px solid var(--red); background: var(--card);
+      font-weight: 700; font-size: clamp(1.05rem, 1.8vw, 1.2rem); line-height: 1.5;
+    }
+    .bridge span { color: var(--red-text); }
+
+    /* ---------- watch ---------- */
+    .video-frame {
+      max-width: 56rem; margin: 2.2rem auto 0; aspect-ratio: 16 / 9;
+      border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+      background: var(--night);
+    }
+    .video-frame video { width: 100%; height: 100%; display: block; }
+
+    /* ---------- dark close ---------- */
+    .close-band { background: var(--night); color: var(--paper); padding: clamp(4rem, 8vw, 6.5rem) 0; }
+    .close-band h2 { color: var(--paper); }
+    .close-band p.big {
+      margin-top: 1.3rem; font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      line-height: 1.65; color: var(--paper); max-width: 42rem;
+    }
+    .close-band .muted { color: var(--steel-light); margin-top: .6rem; }
+    .cta {
+      display: inline-block; margin-top: 2.2rem;
+      background: var(--red-text); color: #fff; font-weight: 700; text-decoration: none;
+      padding: .9rem 1.8rem; border-radius: 10px; font-size: 1.02rem;
+    }
+    .cta:hover { background: #A8262B; }
+
+    /* ---------- footer ---------- */
+    footer { background: var(--night); color: var(--steel-light); padding: 0 0 2.5rem; font-size: .82rem; }
+    footer .wrap { border-top: 1px solid var(--night-soft); padding-top: 1.6rem; }
+    footer a { color: var(--steel-light); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AeroKastell",
+    "url": "https://aerokastell.com/de/",
+    "logo": "https://aerokastell.com/assets/ak-apple-touch-icon-180.png",
+    "description": "Drohnenerkennung für kritische Standorte: erkennen, identifizieren, lokalisieren, beweisen. Integriert sich in bestehende Sicherheitssysteme.",
+    "slogan": "Beweise, nicht nur Alarme."
+  }
+  </script>
+</head>
+<body>
+  <!-- ============================== HERO ============================== -->
+  <main>
+  <section class="hero">
+    <a class="lang" href="../index.html" lang="en" hreflang="en">EN</a>
+    <video class="hero-bg" autoplay muted loop playsinline preload="auto"
+           poster="../assets/hero/ak-hero-loop-v02-poster.jpg" aria-hidden="true">
+      <source src="../assets/hero/ak-hero-loop-v02.webm" type="video/webm">
+      <source src="../assets/hero/ak-hero-loop-v02.mp4" type="video/mp4">
+    </video>
+    <div class="content">
+      <img class="logo" src="../assets/ak-logo-horizontal-reversed-v5.svg" alt="AeroKastell">
+      <div class="hero-rule"></div>
+      <h1>Beweise, nicht nur&nbsp;Alarme.</h1>
+      <p class="lede">
+        AeroKastell schützt kritische Standorte vor Drohnen:
+        <strong>erkennen</strong>, <strong>identifizieren</strong>, den Piloten
+        <strong>lokalisieren</strong> und es <strong>beweisen</strong>. Es integriert sich
+        in die Video- und physischen Sicherheitsplattformen, die Ihr Team bereits
+        betreibt: VMS und PSIM, die Sie schon haben. Kein Parallelbetrieb.
+      </p>
+      <p class="contact">Frühzeitig mit uns sprechen? <a href="mailto:contact@aerokastell.com">contact@aerokastell.com</a></p>
+      <p class="more"><a href="#was">Was wir entwickeln ↓</a></p>
+    </div>
+  </section>
+
+  <!-- ============================== WAS ============================== -->
+  <section class="light" id="was">
+    <div class="wrap">
+      <p class="kicker">Was wir entwickeln</p>
+      <h2>Ein System. Vier Aufgaben, der Reihe nach.</h2>
+      <p class="section-lede">
+        Ein Drohnenerkennungssystem für die kritische Infrastruktur (KRITIS),
+        von der Europa abhängt: Energie, Wasser, Verkehr, Fertigung, Rechenzentren,
+        Häfen. Es überwacht den Luftraum über Ihrem Zaun und macht aus jedem Überflug
+        Beweise.
+      </p>
+      <div class="steps">
+        <div class="step">
+          <span class="no">01</span>
+          <h3>Erkennen</h3>
+          <p>Aktive und passive Erkennung arbeiten auf Ihrem Gelände zusammen: Radar, Funk und Akustik. Selbst eine Drohne, die kein Signal sendet, wird erfasst, sobald sie den Luftraum betritt.</p>
+        </div>
+        <div class="step">
+          <span class="no">02</span>
+          <h3>Identifizieren</h3>
+          <p>Das System unterscheidet eine Drohne von einem Vogel, und eine unbekannte Drohne von einer autorisierten.</p>
+        </div>
+        <div class="step">
+          <span class="no">03</span>
+          <h3>Lokalisieren</h3>
+          <p>Die Erkennung findet die Drohne. Die Lokalisierung findet die Person, die sie fliegt. Mit der bekannten Position des Piloten können die Behörden an der Quelle handeln, statt der Drohne am Himmel nachzujagen.</p>
+        </div>
+        <div class="step">
+          <span class="no">04</span>
+          <h3>Nachweisen</h3>
+          <p>Jeder Schritt wird dokumentiert: eine vollständige, überprüfbare Aufzeichnung des Geschehens, bereit zur Vorlage bei Ihrem Vorstand, Ihren Revisoren und den Behörden.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== WARUM ============================== -->
+  <section class="light" id="warum">
+    <div class="wrap">
+      <p class="kicker">Warum wir es bauen</p>
+      <h2>Der Luftraum über kritischen Standorten ist zum Sicherheitsproblem geworden.<br>Die Werkzeuge sind nicht hinterhergekommen.</h2>
+      <div class="reasons">
+        <div class="reason">
+          <h3><span>01 ·</span> Die Bedrohung kam leise</h3>
+          <p>Unbefugte Drohnenflüge über kritischen Standorten sind keine Seltenheit mehr. Sie ereignen sich rund um Energie-, Wasser-, Verkehrs- und Industriestandorte in ganz Europa, und sie zielen zunehmend auf Störung, nicht auf Neugier.</p>
+        </div>
+        <div class="reason">
+          <h3><span>02 ·</span> Die meisten Standorte sehen sie nicht</h3>
+          <p>Eine Drohne ist klein, niedrig und leise. Zäune und Kameras wurden für den Boden gebaut. Ohne eigene Detektion erfahren Sie von einem Überflug oft erst aus den Nachrichten, oder gar nicht.</p>
+        </div>
+        <div class="reason">
+          <h3><span>03 ·</span> Die Aufsicht schaut nach oben</h3>
+          <p>Die im Juli 2026 veröffentlichten EU-Leitlinien empfehlen Betreibern kritischer Standorte ausdrücklich, Drohnenerkennungsmaßnahmen umzusetzen. Heute ist es eine Empfehlung. Weitere Anforderungen werden folgen.</p>
+        </div>
+      </div>
+      <p class="source-note">
+        Referenz: Leitlinien der Kommission zur Anwendung von Artikel 13 Absatz 5 der CER-Richtlinie (EU) 2022/2557
+        (C/2026/3712, 13. Juli 2026), Volltext unter <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=OJ%3AC_202603712" rel="noopener" target="_blank">eur-lex.europa.eu</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================== DIE LÜCKE ============================== -->
+  <section class="light" id="luecke">
+    <div class="wrap">
+      <p class="kicker">Die Lücke</p>
+      <h2>Drei Optionen heute. Keine passt.</h2>
+      <p class="section-lede">
+        Der Markt bietet heute drei Optionen zur Drohnenerkennung. Jede scheitert auf
+        ihre Weise.
+      </p>
+      <div class="diffs">
+        <div class="diff">
+          <h3>Die billige.</h3>
+          <p>Ein Funkscanner für wenige Tausend Euro. Sendet die Drohne, kann er sie
+          hören, klassifizieren und die Beweise aufzeichnen. Ist die Drohne stumm,
+          gibt es nichts zu hören: keine Klassifizierung, keine Beweise, keinen
+          Nachweis. Bei einer echten Bedrohung vertraut ihm niemand.</p>
+        </div>
+        <div class="diff">
+          <h3>Die leistungsstarke.</h3>
+          <p>Radar- und Abfangsysteme für Verteidigung und Schlachtfeld. Die Detektion
+          ist real, und der Preis auch: sechsstellig vor der Integration, plus die
+          Spezialisten für den Betrieb. Für die meisten kritischen Standorte
+          unerreichbar.</p>
+        </div>
+        <div class="diff">
+          <h3>Die isolierte.</h3>
+          <p>Was gekauft wird, läuft meist neben den Sicherheitssystemen des Standorts,
+          nicht in ihnen: ein weiterer Bildschirm, ein weiterer Operator, ein weiterer
+          Satz Alarme für sich.</p>
+        </div>
+      </div>
+      <p class="bridge">
+        Diese Lücke ist der Grund, warum AeroKastell existiert: <span>verlässliche
+        Detektion zu einem Preis, den Sie sich leisten können, in den Sicherheitssystemen,
+        die Sie bereits betreiben.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================== ANDERS ============================== -->
+  <section class="light" id="anders">
+    <div class="wrap">
+      <p class="kicker">Warum AeroKastell anders ist</p>
+      <h2>Keine Warnbox. Kein Schlachtfeldsystem.</h2>
+      <div class="diffs">
+        <div class="diff">
+          <h3>Sieht, was andere <em>übersehen</em>.</h3>
+          <p>Die meisten Systeme erkennen eine Drohne über ihr Funksignal. Stumme Drohnen, die wichtigsten, gehen direkt hindurch. Wir erkennen die Drohne über ihre physische Anwesenheit: Stille ändert nichts.</p>
+        </div>
+        <div class="diff">
+          <h3>Beweise, nicht nur <em>Alarme</em>.</h3>
+          <p>Ein Alarm, den niemand überprüfen kann, beweist nichts. Jede Detektion wird dokumentiert und ist überprüfbar, bereit für Ihr Management, Ihre Versicherer und die Behörden.</p>
+        </div>
+        <div class="diff">
+          <h3>Gesetzeskonform von <em>Grund auf</em>.</h3>
+          <p>Wir erkennen und dokumentieren. Wir stören nicht und schießen keine Drohnen ab: Die Reaktion bleibt bei den Behörden, genau dort, wo das Gesetz sie verortet.</p>
+        </div>
+        <div class="diff">
+          <h3>Für jeden kritischen <em>Standort</em> gebaut.</h3>
+          <p>Erschwinglich, einfach in die bestehende Sicherheitsinfrastruktur integrierbar und europäisch, sodass Ihre Daten auf Ihrem Standort bleiben.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== FÜR WEN ============================== -->
+  <section class="light" id="fuer-wen">
+    <div class="wrap">
+      <p class="kicker">Für wen es ist</p>
+      <h2>Sie halten Europa am Laufen.</h2>
+      <div class="chips">
+        <span class="chip">Stromnetze &amp; Energie</span>
+        <span class="chip">Öl &amp; Gas</span>
+        <span class="chip">Verkehr &amp; Logistik</span>
+        <span class="chip">Häfen &amp; Bahn</span>
+        <span class="chip">Krankenhäuser &amp; Gesundheitswesen</span>
+        <span class="chip">Trink- &amp; Abwasser</span>
+        <span class="chip">Rechenzentren &amp; digitale Infrastruktur</span>
+        <span class="chip">Öffentliche Verwaltung</span>
+      </div>
+      <p class="section-lede" style="margin-top:1.4rem">Mehr als ein Standort? Derselbe
+      Standard an jedem einzelnen, und alle in einer Übersicht.</p>
+    </div>
+  </section>
+
+  <!-- ============================== ANSCHAUEN ============================== -->
+  <section class="light" id="anschauen">
+    <div class="wrap">
+      <p class="kicker">Anschauen</p>
+      <h2>AeroKastell in Bewegung.</h2>
+      <div class="video-frame">
+        <video controls preload="metadata" poster="../assets/video/ak-website-video-v02-poster.jpg">
+          <source src="../assets/video/ak-website-video-v02.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SCHLUSS ============================== -->
+  <section class="close-band" id="kontakt">
+    <div class="wrap">
+      <h2>Sorgfältig gebaut.</h2>
+      <p class="big">
+        Wir entwickeln AeroKastell bewusst und sprechen derzeit mit einer kleinen Gruppe
+        von Betreibern und Partnern, die dasselbe Problem am selben Himmel sehen. Wenn
+        das auf Sie zutrifft, freuen wir uns auf Ihre Nachricht.
+      </p>
+      <p class="muted">Erste Gespräche in Kürze.</p>
+      <a class="cta" href="mailto:contact@aerokastell.com">contact@aerokastell.com</a>
+    </div>
+  </section>
+  </main>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer>
+    <div class="wrap">
+      © 2026 AeroKastell · Alle Rechte vorbehalten · aerokastell.com
+    </div>
+  </footer>
+</body>
+</html>
