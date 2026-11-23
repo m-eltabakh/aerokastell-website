@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Impressum · AeroKastell</title>
+  <meta name="description" content="Impressum: provider and data-protection information for aerokastell.com.">
+  <link rel="canonical" href="https://aerokastell.com/impressum.html">
+  <link rel="alternate" hreflang="en" href="https://aerokastell.com/impressum.html">
+  <link rel="alternate" hreflang="de" href="https://aerokastell.com/de/impressum.html">
+  <link rel="alternate" hreflang="x-default" href="https://aerokastell.com/impressum.html">
+  <meta name="theme-color" content="#0B1F33">
+  <link rel="icon" href="assets/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" type="image/svg+xml" href="assets/ak-favicon.svg">
+  <link rel="apple-touch-icon" href="assets/ak-apple-touch-icon-180.png">
+  <style>
+    @font-face {
+      font-family: "Lato"; font-style: normal; font-weight: 400;
+      src: url("assets/fonts/lato-400.woff2") format("woff2"); font-display: swap;
+    }
+    @font-face {
+      font-family: "Lato"; font-style: normal; font-weight: 700;
+      src: url("assets/fonts/lato-700.woff2") format("woff2"); font-display: swap;
+    }
+    @font-face {
+      font-family: "Lato"; font-style: normal; font-weight: 900;
+      src: url("assets/fonts/lato-900.woff2") format("woff2"); font-display: swap;
+    }
+    :root {
+      --night: #0B1F33;
+      --night-soft: #12304F;
+      --paper: #F4F2EE;
+      --ink: #0B1F33;
+      --steel: #5B6B7A;
+      --steel-light: #7D8D9C;
+      --red: #E0383E;
+      --red-text: #C42F34;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    .wrap { max-width: 64rem; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+
+    /* ---------- dark band ---------- */
+    .band { background: var(--night); color: var(--paper); padding: 2.2rem 0 2.6rem; position: relative; }
+    .band .wrap { position: relative; }
+    .lang {
+      position: absolute; top: .2rem; right: clamp(1.25rem, 4vw, 2.5rem); z-index: 2;
+      font-size: .82rem; font-weight: 700; letter-spacing: .14em;
+      color: var(--steel-light); text-decoration: none;
+      border: 1px solid rgba(125, 141, 156, .5); border-radius: 999px;
+      padding: .3rem .85rem;
+    }
+    .lang:hover { color: #fff; border-color: var(--red); }
+    .lang:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+    .logo { height: 56px; width: auto; }
+    .band h1 {
+      margin-top: 1.4rem;
+      font-weight: 900; font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--paper); line-height: 1.15;
+    }
+
+    /* ---------- content ---------- */
+    .content { padding: clamp(2.5rem, 6vw, 4rem) 0 3rem; }
+    .col { max-width: 42rem; }
+    h2 { font-weight: 900; font-size: 1.3rem; margin-top: 2.1rem; }
+    h2:first-of-type { margin-top: 0; }
+    .col p { margin-top: .8rem; max-width: 42rem; }
+    .col a {
+      color: var(--ink); text-decoration: none;
+      border-bottom: 1px solid var(--red);
+    }
+    .col a:hover { color: #A8262B; }
+    .col a:focus-visible { outline: 2px solid var(--red-text); outline-offset: 3px; }
+    .back { display: inline-block; margin-top: 2.4rem; }
+  </style>
+</head>
+<body>
+  <header class="band">
+    <div class="wrap">
+      <a class="lang" href="de/impressum.html" lang="de" hreflang="de">DE</a>
+      <img class="logo" src="assets/ak-logo-horizontal-reversed-v5.svg" alt="AeroKastell">
+      <h1>Impressum</h1>
+    </div>
+  </header>
+
+  <main class="content">
+    <div class="wrap">
+      <div class="col">
+        <h2>Data protection</h2>
+        <p>This website collects no personal data. It sets no cookies and uses no analytics or tracking
+        tools. It loads no fonts, scripts or other resources from third parties.</p>
+        <p>The only way to contact AeroKastell is by email:
+        <a href="mailto:contact@aerokastell.com">contact@aerokastell.com</a>. If you write, your
+        email address and your message are used only to answer you.</p>
+        <p>Technical connection data needed to deliver the pages, such as the IP address, is processed by
+        the hosting provider.</p>
+
+        <a class="back" href="index.html">Back</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

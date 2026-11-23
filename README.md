@@ -1,6 +1,6 @@
 # aerokastell-website
 
-The AeroKastell website, a single static page.
+The AeroKastell website: a single landing page (English and German) plus the Impressum pages.
 
 Built with plain HTML and CSS: no frameworks, no JavaScript, no build step.
 The Lato fonts are self-hosted (SIL Open Font Licence) and all brand assets
