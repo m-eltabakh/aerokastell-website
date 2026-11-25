@@ -14,7 +14,12 @@
   <meta property="og:title" content="AeroKastell: Evidence, not just alarms.">
   <meta property="og:description" content="Drone detection for critical sites: detect, identify, locate, prove. Works with your existing VMS and PSIM.">
   <meta property="og:url" content="https://aerokastell.com/">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://aerokastell.com/assets/ak-og-image-v03.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AeroKastell: the civilian answer to drones over critical sites. Detect, identify, locate, prove.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://aerokastell.com/assets/ak-og-image-v03.png">
   <meta name="theme-color" content="#0B1F33">
   <link rel="icon" href="assets/favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="icon" type="image/svg+xml" href="assets/ak-favicon.svg">
@@ -57,8 +62,49 @@
     }
     .wrap { max-width: 64rem; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
 
+    /* ---------- skip link + sticky header ---------- */
+    .skip {
+      position: absolute; left: -999px; top: .6rem; z-index: 100;
+      background: var(--paper); color: var(--ink); font-weight: 700; text-decoration: none;
+      padding: .5rem .9rem; border-radius: 8px;
+    }
+    .skip:focus { left: .75rem; }
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--night); border-bottom: 1px solid var(--night-soft);
+    }
+    .site-header .bar {
+      max-width: 64rem; margin: 0 auto; height: 4rem;
+      padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+      display: flex; align-items: center; gap: 1.4rem;
+    }
+    .site-header .logo { height: 34px; }
+    .nav { display: flex; gap: 1.5rem; margin-left: auto; }
+    .nav a { color: var(--steel-light); text-decoration: none; font-size: .9rem; font-weight: 700; }
+    .nav a:hover { color: #fff; }
+    .btn {
+      display: inline-block; white-space: nowrap;
+      background: var(--red-text); color: #fff; font-weight: 700; text-decoration: none;
+      padding: .55rem 1.1rem; border-radius: 10px; font-size: .92rem;
+    }
+    .btn:hover { background: #A8262B; }
+    .site-header a:focus-visible, .hero a:focus-visible, .close-band a:focus-visible, .btn:focus-visible {
+      outline: 2px solid var(--paper); outline-offset: 3px;
+    }
+    @media (max-width: 880px) {
+      .nav { display: none; }
+      .site-header .lang { margin-left: auto; }
+    }
+    @media (max-width: 440px) {
+      .site-header .bar { gap: .7rem; }
+      .site-header .logo { height: 28px; }
+      .site-header .btn { padding: .5rem .8rem; font-size: .85rem; }
+      .site-header .lang { padding: .25rem .6rem; }
+    }
+    html { scroll-padding-top: 4.5rem; }  /* anchors and focused elements stay clear of the sticky header */
+
     /* ---------- hero ---------- */
-    .hero { position: relative; min-height: 100vh; overflow: hidden; background: var(--night); color: var(--paper); }
+    .hero { position: relative; min-height: calc(100vh - 4rem); overflow: hidden; background: var(--night); color: var(--paper); }
     .hero-bg {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; object-position: right center;  /* the motion lives on the right */
@@ -72,15 +118,19 @@
       position: relative; z-index: 1;
       max-width: 64rem; margin: 0 auto;  /* same column as .wrap, so left edges line up */
       padding: 5rem clamp(1.25rem, 4vw, 2.5rem) 4rem;
-      display: flex; flex-direction: column; min-height: 100vh;
+      display: flex; flex-direction: column; min-height: calc(100vh - 4rem);
     }
+    .hero .content > .hero-rule { margin-top: auto; }
+    .hero .content > :last-child { margin-bottom: auto; }
+    .hero-actions { margin-top: 2.2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; }
+    .hero-actions .btn { padding: .85rem 1.6rem; font-size: 1.02rem; }
+    .hero-actions .ghost {
+      color: var(--paper); font-weight: 700; text-decoration: none;
+      border-bottom: 1px solid var(--steel-light); padding-bottom: .1rem;
+    }
+    .hero-actions .ghost:hover { color: #fff; border-color: var(--red); }
     .hero .content > * { max-width: 34rem; }  /* the original text measure; keeps clear of the motion on the right */
-    .topbar {
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-      margin-bottom: auto;
-    }
-    .hero .content > .topbar { max-width: none; }  /* the switcher sits at the column's right edge */
-    .logo { height: 64px; width: auto; display: block; }
+    .logo { width: auto; display: block; }
     .lang {
       flex-shrink: 0;
       font-size: .82rem; font-weight: 700; letter-spacing: .14em;
@@ -90,7 +140,7 @@
     }
     .lang:hover { color: #fff; border-color: var(--red); }
     .lang:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
-    .hero-rule { width: 3rem; height: 2px; background: var(--red); margin: 3rem 0 .9rem; }
+    .hero-rule { width: 3rem; height: 2px; background: var(--red); margin: 0 0 .9rem; }
     h1 {
       margin-top: 1.6rem;
       font-weight: 900; font-size: clamp(2.2rem, 5vw, 3.4rem);
@@ -102,18 +152,14 @@
       max-width: 34rem;
     }
     .lede strong { font-weight: 700; }
-    .contact { margin-top: 2.2rem; font-size: 1rem; color: var(--steel-light); }
+    .contact { margin-top: 1.3rem; font-size: .95rem; color: var(--steel-light); }
     .contact a {
       color: var(--paper); font-weight: 700; text-decoration: none;
       border-bottom: 1px solid var(--red);
     }
     .contact a:hover { color: #fff; }
-    .more { margin-top: auto; padding-top: 3rem; font-size: .85rem; color: var(--steel-light); }
-    .more a { color: var(--paper); text-decoration: none; border-bottom: 1px solid var(--steel-light); }
-    .more a:hover { color: #fff; border-color: var(--red); }
     @media (max-width: 640px) {
       .hero .content { padding: 3rem clamp(1.25rem, 4vw, 2.5rem) 2.5rem; }
-      .logo { height: 52px; }
     }
 
     /* ---------- light sections ---------- */
@@ -165,6 +211,42 @@
     }
     .chips + .section-lede { margin-top: 1.4rem; }
 
+    /* ---------- overflight record (an illustration, not a product screen) ---------- */
+    .record-row {
+      margin-top: 3rem; display: grid; gap: 2rem 3rem; align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    }
+    .record-text h3 { font-weight: 900; font-size: clamp(1.3rem, 2.4vw, 1.6rem); line-height: 1.25; }
+    .record-text p { margin-top: .8rem; color: var(--steel); }
+    .record {
+      background: var(--night); color: var(--paper); border-radius: 14px;
+      padding: 1.5rem 1.6rem 1.3rem; box-shadow: 0 18px 40px -24px rgba(11, 31, 51, .55);
+    }
+    .record-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    .record-title { font-weight: 900; font-size: 1.15rem; }
+    .record-title::before {
+      content: ""; display: block; width: 2rem; height: 2px; background: var(--red); margin-bottom: .7rem;
+    }
+    .record-note { font-size: .75rem; color: var(--steel-light); letter-spacing: .04em; }
+    .record dl { margin-top: 1rem; }
+    .record dl div {
+      display: grid; grid-template-columns: 8.5rem 1fr; gap: 1rem;
+      padding: .7rem 0; border-top: 1px solid var(--night-soft);
+    }
+    .record dt { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--steel-light); padding-top: .15rem; }
+    .record dd { font-weight: 700; }
+    .record-for { padding-top: .8rem; border-top: 1px solid var(--night-soft); font-size: .85rem; color: var(--steel-light); }
+    @media (max-width: 420px) { .record dl div { grid-template-columns: 1fr; gap: .1rem; } }
+
+    /* ---------- survey figures ---------- */
+    .stats { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+    .stats-lead { font-weight: 700; }
+    .stats-row { margin-top: 1.2rem; display: grid; gap: 1.5rem 3rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+    .stat .num { display: block; font-weight: 900; font-size: clamp(2.4rem, 5vw, 3.2rem); line-height: 1; }
+    .stat .num::after { content: ""; display: block; width: 2rem; height: 2px; background: var(--red); margin-top: .7rem; }
+    .stat p { margin-top: .7rem; color: var(--steel); max-width: 22rem; }
+    .source-note + .source-note { margin-top: .5rem; }
+
     /* ---------- gap section ---------- */
     .bridge {
       margin-top: 2.2rem; padding: 1.4rem 1.6rem;
@@ -188,7 +270,16 @@
       margin-top: 1.3rem; font-size: clamp(1.05rem, 1.8vw, 1.25rem);
       line-height: 1.65; color: var(--paper); max-width: 42rem;
     }
-    .close-band .muted { color: var(--steel-light); margin-top: .6rem; }
+    .close-band .muted { color: var(--steel-light); margin-top: 1.2rem; }
+    .close-band .muted a { color: var(--paper); }
+    .pick { margin-top: 2.2rem; font-weight: 700; }
+    .pick span { font-weight: 400; color: var(--steel-light); }
+    .chips.on-dark { margin-top: 1rem; }
+    .chips.on-dark .chip {
+      background: transparent; color: var(--paper); border-color: rgba(125, 141, 156, .55);
+      text-decoration: none;
+    }
+    .chips.on-dark .chip:hover { border-color: var(--red); color: #fff; }
     .cta {
       display: inline-block; margin-top: 2.2rem;
       background: var(--red-text); color: #fff; font-weight: 700; text-decoration: none;
@@ -217,7 +308,21 @@
 </head>
 <body>
   <!-- ============================== HERO ============================== -->
-  <main>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="bar">
+      <a href="#main" aria-label="AeroKastell"><img class="logo" src="assets/ak-logo-horizontal-reversed-v5.svg" alt="AeroKastell"></a>
+      <nav class="nav" aria-label="Main">
+        <a href="#what">How it works</a>
+        <a href="#why">Why now</a>
+        <a href="#different">What's different</a>
+        <a href="#watch">Film</a>
+      </nav>
+      <a class="lang" href="de/index.html" lang="de" hreflang="de">DE</a>
+      <a class="btn" href="mailto:contact@aerokastell.com">Talk to us</a>
+    </div>
+  </header>
+  <main id="main">
   <section class="hero">
     <video class="hero-bg" autoplay muted loop playsinline preload="auto"
            poster="assets/hero/ak-hero-loop-v02-poster.jpg" aria-hidden="true">
@@ -225,10 +330,6 @@
       <source src="assets/hero/ak-hero-loop-v02.mp4" type="video/mp4">
     </video>
     <div class="content">
-      <div class="topbar">
-        <img class="logo" src="assets/ak-logo-horizontal-reversed-v5.svg" alt="AeroKastell">
-        <a class="lang" href="de/index.html" lang="de" hreflang="de">DE</a>
-      </div>
       <div class="hero-rule"></div>
       <h1>Evidence, not just&nbsp;alarms.</h1>
       <p class="lede">
@@ -237,8 +338,11 @@
         pilot, <strong>prove</strong> it. It integrates with the video and physical-security
         platforms you already run (VMS and PSIM): no parallel system.
       </p>
-      <p class="contact">Want to talk early? <a href="mailto:contact@aerokastell.com">contact@aerokastell.com</a></p>
-      <p class="more"><a href="#what">What we're building ↓</a></p>
+      <div class="hero-actions">
+        <a class="btn" href="mailto:contact@aerokastell.com">Talk to us</a>
+        <a class="ghost" href="#what">How it works ↓</a>
+      </div>
+      <p class="contact">Or write to <a href="mailto:contact@aerokastell.com">contact@aerokastell.com</a></p>
     </div>
   </section>
 
@@ -274,6 +378,24 @@
           <p>Every step is documented: a complete, verifiable record of what happened, ready to present to your board, your auditors and the authorities.</p>
         </div>
       </div>
+      <div class="record-row">
+        <div class="record-text">
+          <h3>Every overflight ends as a record.</h3>
+          <p>Not an alarm that fades from a screen, but one document: what flew, what it was,
+          where the pilot stood, and how it was verified. The same record for site management,
+          insurers and the authorities.</p>
+        </div>
+        <figure class="record" aria-label="Illustration of the concept: an overflight record">
+          <figcaption class="record-head"><span class="record-title">Overflight record</span><span class="record-note">Illustration of the concept</span></figcaption>
+          <dl>
+            <div><dt>Detected</dt><dd>Radar, radio, acoustic</dd></div>
+            <div><dt>Identified</dt><dd>Unknown drone, not authorised</dd></div>
+            <div><dt>Pilot located</dt><dd>Position on record</dd></div>
+            <div><dt>Documented</dt><dd>Complete and verifiable</dd></div>
+          </dl>
+          <p class="record-for">For management, insurers and the authorities</p>
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -293,9 +415,19 @@
         </div>
         <div class="reason">
           <h3><span>03 ·</span> Regulators are looking up</h3>
-          <p>EU guidance published in July 2026 explicitly encourages operators of critical sites to implement drone-detection measures. Today it is only an encouragement. More requirements will follow.</p>
+          <p>EU guidance published in July 2026 explicitly encourages operators of critical sites to implement drone-detection measures. Today it is an encouragement, not an obligation.</p>
         </div>
       </div>
+      <div class="stats">
+        <p class="stats-lead">Of German critical-site operators who see drones as a threat:</p>
+        <div class="stats-row">
+          <div class="stat"><span class="num">54.7&nbsp;%</span><p>reported unauthorised or security-relevant drone flights in the past 12 months.</p></div>
+          <div class="stat"><span class="num">46.5&nbsp;%</span><p>have no drone detection at all.</p></div>
+        </div>
+      </div>
+      <p class="source-note">
+        Survey: BSKI/Droniq KRITIS Survey 2026, August 2026, 104 operators; figures for the 86 who see drones as a threat.
+      </p>
       <p class="source-note">
         Reference: Commission Guidelines on the application of Article 13(5) of the CER Directive
         (EU) 2022/2557 (C/2026/3712, 13 July 2026), full text at <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ%3AC_202603712" rel="noopener" target="_blank">eur-lex.europa.eu</a>
@@ -389,10 +521,11 @@
   <!-- ============================== WATCH ============================== -->
   <section class="light" id="watch">
     <div class="wrap">
-      <p class="kicker">Watch</p>
+      <p class="kicker">Film</p>
       <h2>AeroKastell, in motion.</h2>
+      <p class="section-lede">How it works, in 57 seconds. With sound.</p>
       <div class="video-frame">
-        <video controls preload="metadata" poster="assets/video/ak-website-video-v02-poster.jpg">
+        <video controls playsinline preload="metadata" aria-label="AeroKastell film, 57 seconds" poster="assets/video/ak-website-video-v02-poster.jpg">
           <source src="assets/video/ak-website-video-v02.mp4" type="video/mp4">
         </video>
       </div>
@@ -402,14 +535,25 @@
   <!-- ============================== CLOSE ============================== -->
   <section class="close-band" id="contact">
     <div class="wrap">
-      <h2>Built carefully.</h2>
+      <h2>What's over your site tonight?</h2>
       <p class="big">
-        We're building AeroKastell deliberately, and talking to a small group of
-        operators and partners who see the same problem in the same sky. If that's you,
-        we'd like to hear from you.
+        We're building AeroKastell deliberately, and talking to a small group of European
+        operators and partners first. Tell us what you protect, and we'll talk through
+        what detection would look like there.
       </p>
-      <p class="muted">First conversations, first light soon.</p>
-      <a class="cta" href="mailto:contact@aerokastell.com">contact@aerokastell.com</a>
+      <p class="pick">What do you protect? <span>Pick one, and the email opens with it filled in.</span></p>
+      <div class="chips on-dark">
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20first%20conversation%20%28Power%20grids%20%26%20energy%29&amp;body=What%20we%20protect%3A%20Power%20grids%20%26%20energy%0ACountry%3A%0AWhat%20worries%20us%20most%20about%20drones%3A%0A">Power grids &amp; energy</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20first%20conversation%20%28Oil%20%26%20gas%29&amp;body=What%20we%20protect%3A%20Oil%20%26%20gas%0ACountry%3A%0AWhat%20worries%20us%20most%20about%20drones%3A%0A">Oil &amp; gas</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20first%20conversation%20%28Transport%20%26%20logistics%29&amp;body=What%20we%20protect%3A%20Transport%20%26%20logistics%0ACountry%3A%0AWhat%20worries%20us%20most%20about%20drones%3A%0A">Transport &amp; logistics</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20first%20conversation%20%28Ports%20%26%20railways%29&amp;body=What%20we%20protect%3A%20Ports%20%26%20railways%0ACountry%3A%0AWhat%20worries%20us%20most%20about%20drones%3A%0A">Ports &amp; railways</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20first%20conversation%20%28Hospitals%20%26%20healthcare%29&amp;body=What%20we%20protect%3A%20Hospitals%20%26%20healthcare%0ACountry%3A%0AWhat%20worries%20us%20most%20about%20drones%3A%0A">Hospitals &amp; healthcare</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20first%20conversation%20%28Drinking%20water%20%26%20wastewater%29&amp;body=What%20we%20protect%3A%20Drinking%20water%20%26%20wastewater%0ACountry%3A%0AWhat%20worries%20us%20most%20about%20drones%3A%0A">Drinking water &amp; wastewater</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20first%20conversation%20%28Data%20centres%20%26%20digital%20infrastructure%29&amp;body=What%20we%20protect%3A%20Data%20centres%20%26%20digital%20infrastructure%0ACountry%3A%0AWhat%20worries%20us%20most%20about%20drones%3A%0A">Data centres &amp; digital infrastructure</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20first%20conversation%20%28Public%20administration%29&amp;body=What%20we%20protect%3A%20Public%20administration%0ACountry%3A%0AWhat%20worries%20us%20most%20about%20drones%3A%0A">Public administration</a>
+      </div>
+      <a class="cta" href="mailto:contact@aerokastell.com">Talk to us</a>
+      <p class="muted">Or write to <a href="mailto:contact@aerokastell.com">contact@aerokastell.com</a>. First conversations, first light soon.</p>
     </div>
   </section>
   </main>
