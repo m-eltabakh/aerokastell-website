@@ -14,7 +14,12 @@
   <meta property="og:title" content="AeroKastell: Beweise, nicht nur Alarme.">
   <meta property="og:description" content="Drohnenerkennung für kritische Standorte: erkennen, identifizieren, lokalisieren, beweisen. Funktioniert mit Ihren bestehenden VMS- und PSIM-Systemen.">
   <meta property="og:url" content="https://aerokastell.com/de/">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://aerokastell.com/assets/ak-og-image-v03.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AeroKastell: the civilian answer to drones over critical sites. Detect, identify, locate, prove.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://aerokastell.com/assets/ak-og-image-v03.png">
   <meta name="theme-color" content="#0B1F33">
   <link rel="icon" href="../assets/favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="icon" type="image/svg+xml" href="../assets/ak-favicon.svg">
@@ -57,8 +62,49 @@
     }
     .wrap { max-width: 64rem; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
 
+    /* ---------- skip link + sticky header ---------- */
+    .skip {
+      position: absolute; left: -999px; top: .6rem; z-index: 100;
+      background: var(--paper); color: var(--ink); font-weight: 700; text-decoration: none;
+      padding: .5rem .9rem; border-radius: 8px;
+    }
+    .skip:focus { left: .75rem; }
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--night); border-bottom: 1px solid var(--night-soft);
+    }
+    .site-header .bar {
+      max-width: 64rem; margin: 0 auto; height: 4rem;
+      padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+      display: flex; align-items: center; gap: 1.4rem;
+    }
+    .site-header .logo { height: 34px; }
+    .nav { display: flex; gap: 1.5rem; margin-left: auto; }
+    .nav a { color: var(--steel-light); text-decoration: none; font-size: .9rem; font-weight: 700; }
+    .nav a:hover { color: #fff; }
+    .btn {
+      display: inline-block; white-space: nowrap;
+      background: var(--red-text); color: #fff; font-weight: 700; text-decoration: none;
+      padding: .55rem 1.1rem; border-radius: 10px; font-size: .92rem;
+    }
+    .btn:hover { background: #A8262B; }
+    .site-header a:focus-visible, .hero a:focus-visible, .close-band a:focus-visible, .btn:focus-visible {
+      outline: 2px solid var(--paper); outline-offset: 3px;
+    }
+    @media (max-width: 880px) {
+      .nav { display: none; }
+      .site-header .lang { margin-left: auto; }
+    }
+    @media (max-width: 440px) {
+      .site-header .bar { gap: .7rem; }
+      .site-header .logo { height: 28px; }
+      .site-header .btn { padding: .5rem .8rem; font-size: .85rem; }
+      .site-header .lang { padding: .25rem .6rem; }
+    }
+    html { scroll-padding-top: 4.5rem; }  /* anchors and focused elements stay clear of the sticky header */
+
     /* ---------- hero ---------- */
-    .hero { position: relative; min-height: 100vh; overflow: hidden; background: var(--night); color: var(--paper); }
+    .hero { position: relative; min-height: calc(100vh - 4rem); overflow: hidden; background: var(--night); color: var(--paper); }
     .hero-bg {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; object-position: right center;  /* the motion lives on the right */
@@ -72,15 +118,19 @@
       position: relative; z-index: 1;
       max-width: 64rem; margin: 0 auto;  /* same column as .wrap, so left edges line up */
       padding: 5rem clamp(1.25rem, 4vw, 2.5rem) 4rem;
-      display: flex; flex-direction: column; min-height: 100vh;
+      display: flex; flex-direction: column; min-height: calc(100vh - 4rem);
     }
+    .hero .content > .hero-rule { margin-top: auto; }
+    .hero .content > :last-child { margin-bottom: auto; }
+    .hero-actions { margin-top: 2.2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; }
+    .hero-actions .btn { padding: .85rem 1.6rem; font-size: 1.02rem; }
+    .hero-actions .ghost {
+      color: var(--paper); font-weight: 700; text-decoration: none;
+      border-bottom: 1px solid var(--steel-light); padding-bottom: .1rem;
+    }
+    .hero-actions .ghost:hover { color: #fff; border-color: var(--red); }
     .hero .content > * { max-width: 34rem; }  /* the original text measure; keeps clear of the motion on the right */
-    .topbar {
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-      margin-bottom: auto;
-    }
-    .hero .content > .topbar { max-width: none; }  /* the switcher sits at the column's right edge */
-    .logo { height: 64px; width: auto; display: block; }
+    .logo { width: auto; display: block; }
     .lang {
       flex-shrink: 0;
       font-size: .82rem; font-weight: 700; letter-spacing: .14em;
@@ -90,7 +140,7 @@
     }
     .lang:hover { color: #fff; border-color: var(--red); }
     .lang:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
-    .hero-rule { width: 3rem; height: 2px; background: var(--red); margin: 3rem 0 .9rem; }
+    .hero-rule { width: 3rem; height: 2px; background: var(--red); margin: 0 0 .9rem; }
     h1 {
       margin-top: 1.6rem;
       font-weight: 900; font-size: clamp(2.2rem, 5vw, 3.4rem);
@@ -102,18 +152,14 @@
       max-width: 34rem;
     }
     .lede strong { font-weight: 700; }
-    .contact { margin-top: 2.2rem; font-size: 1rem; color: var(--steel-light); }
+    .contact { margin-top: 1.3rem; font-size: .95rem; color: var(--steel-light); }
     .contact a {
       color: var(--paper); font-weight: 700; text-decoration: none;
       border-bottom: 1px solid var(--red);
     }
     .contact a:hover { color: #fff; }
-    .more { margin-top: auto; padding-top: 3rem; font-size: .85rem; color: var(--steel-light); }
-    .more a { color: var(--paper); text-decoration: none; border-bottom: 1px solid var(--steel-light); }
-    .more a:hover { color: #fff; border-color: var(--red); }
     @media (max-width: 640px) {
       .hero .content { padding: 3rem clamp(1.25rem, 4vw, 2.5rem) 2.5rem; }
-      .logo { height: 52px; }
     }
 
     /* ---------- light sections ---------- */
@@ -165,6 +211,118 @@
     }
     .chips + .section-lede { margin-top: 1.4rem; }
 
+    /* ---------- overflight record (an illustration, not a product screen) ---------- */
+    .record-row {
+      margin-top: 3rem; display: grid; gap: 2rem 3rem; align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    }
+    .record-text h3 { font-weight: 900; font-size: clamp(1.3rem, 2.4vw, 1.6rem); line-height: 1.25; }
+    .record-text p { margin-top: .8rem; color: var(--steel); }
+    .record {
+      background: var(--night); color: var(--paper); border-radius: 14px;
+      padding: 1.5rem 1.6rem 1.3rem; box-shadow: 0 18px 40px -24px rgba(11, 31, 51, .55);
+    }
+    .record-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    .record-title { font-weight: 900; font-size: 1.15rem; }
+    .record-title::before {
+      content: ""; display: block; width: 2rem; height: 2px; background: var(--red); margin-bottom: .7rem;
+    }
+    .record-note { font-size: .75rem; color: var(--steel-light); letter-spacing: .04em; }
+    .record dl { margin-top: 1rem; }
+    .record dl div {
+      display: grid; grid-template-columns: 8.5rem 1fr; gap: 1rem;
+      padding: .7rem 0; border-top: 1px solid var(--night-soft);
+    }
+    .record dt { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--steel-light); padding-top: .15rem; }
+    .record dd { font-weight: 700; }
+    .record-for { padding-top: .8rem; border-top: 1px solid var(--night-soft); font-size: .85rem; color: var(--steel-light); }
+    @media (max-width: 420px) { .record dl div { grid-template-columns: 1fr; gap: .1rem; } }
+
+    /* ---------- survey figures ---------- */
+    .stats { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+    .stats-lead { font-weight: 700; }
+    .stats-row { margin-top: 1.2rem; display: grid; gap: 1.5rem 3rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+    .stat .num { display: block; font-weight: 900; font-size: clamp(2.4rem, 5vw, 3.2rem); line-height: 1; }
+    .stat .num::after { content: ""; display: block; width: 2rem; height: 2px; background: var(--red); margin-top: .7rem; }
+    .stat p { margin-top: .7rem; color: var(--steel); max-width: 22rem; }
+    .source-note + .source-note { margin-top: .5rem; }
+
+    /* ---------- motion: the three drawn moments (motion identity v01) ----------
+       Everything below shows complete by default. Only where the browser has scroll-driven animations
+       AND the visitor allows motion do parts start hidden and draw on as they scroll into view.
+       Easing = "settle" (quartic ease-out, no overshoot). */
+    .scene { margin: 2.5rem 0 0; view-timeline: --scene block; }
+    .scene-art { display: block; width: 100%; height: auto; }
+    @media (max-width: 640px) { .scene { margin: 2rem -.75rem 0; } }
+
+    .dots {
+      display: grid; grid-template-columns: repeat(10, 9px); gap: 5px;
+      margin-bottom: 1.2rem; view-timeline: --dots block;
+    }
+    .dots i { display: block; width: 9px; height: 9px; border-radius: 50%; background: rgba(91, 107, 122, .22); }
+    .dots i.on { background: var(--red); }
+    .dots i:nth-child(n+11) { --r: 1; } .dots i:nth-child(n+21) { --r: 2; } .dots i:nth-child(n+31) { --r: 3; }
+    .dots i:nth-child(n+41) { --r: 4; } .dots i:nth-child(n+51) { --r: 5; } .dots i:nth-child(n+61) { --r: 6; }
+    .dots i:nth-child(n+71) { --r: 7; } .dots i:nth-child(n+81) { --r: 8; } .dots i:nth-child(n+91) { --r: 9; }
+    .dots-note { margin-top: 1rem; font-size: .8rem; color: var(--steel); }
+
+    .close-band { position: relative; overflow: hidden; }
+    .close-band .wrap { position: relative; z-index: 1; }
+    .watch { position: absolute; right: 0; bottom: 0; width: min(50vw, 700px); pointer-events: none; }
+    .watch-art { display: block; width: 100%; height: auto; }
+    @media (max-width: 720px) { .watch { width: 150vw; right: -75vw; opacity: .55; } }
+
+    @keyframes ak-fade { from { opacity: 0; } }
+    @keyframes ak-rise { from { opacity: 0; transform: translateY(14px); } }
+    @keyframes ak-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+    @keyframes ak-land { from { opacity: 0; transform: translate(var(--dx), var(--dy)); } }
+    @keyframes ak-card { from { opacity: 0; transform: translateY(18px) scale(.96); } }
+    @keyframes ak-dot { from { background: rgba(91, 107, 122, .22); } }
+    @keyframes ak-breathe { from { opacity: .5; } to { opacity: 1; } }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .b-dome, .b-fill, .b-ring { animation: ak-breathe 2s ease-in-out infinite alternate; }
+      .b-ring { animation-delay: .45s; }
+    }
+    @supports (animation-timeline: view()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .scene-art .a-ground, .scene-art .a-site, .scene-art .a-reveal, .scene-art .a-dome-fill,
+        .scene-art .a-track, .scene-art .a-drone, .scene-art .a-corner, .scene-art .a-pilot,
+        .scene-art .a-record, .scene-art .a-line {
+          animation-duration: auto; animation-fill-mode: both;
+          animation-timing-function: cubic-bezier(.25, 1, .5, 1);
+          animation-timeline: --scene;
+          transform-box: fill-box; transform-origin: center;
+        }
+        .scene-art .a-reveal, .scene-art .a-track { stroke-dasharray: 1 1; animation-name: ak-draw; }
+        .scene-art .a-ground   { animation-name: ak-fade; animation-range: cover 0% cover 12%; }
+        .scene-art .a-site     { animation-name: ak-rise; animation-range: cover 4% cover 16%; }
+        .scene-art .a-dome-r   { animation-range: cover 8% cover 24%; }
+        .scene-art .a-dome-fill { animation-name: ak-fade; animation-range: cover 14% cover 24%; }
+        .scene-art .a-ring-r   { animation-range: cover 14% cover 28%; }
+        .scene-art .a-track    { animation-range: cover 22% cover 36%; }
+        .scene-art .a-drone    { animation-name: ak-fade; animation-range: cover 31% cover 36%; }
+        .scene-art .a-corner   { animation-name: ak-land; }
+        .scene-art .a-c1 { --dx: -10px; --dy: -10px; animation-range: cover 36% cover 40%; }
+        .scene-art .a-c2 { --dx: 10px;  --dy: -10px; animation-range: cover 37% cover 41%; }
+        .scene-art .a-c3 { --dx: 10px;  --dy: 10px;  animation-range: cover 38% cover 42%; }
+        .scene-art .a-c4 { --dx: -10px; --dy: 10px;  animation-range: cover 39% cover 43%; }
+        .scene-art .a-link-r   { animation-range: cover 43% cover 50%; }
+        .scene-art .a-pilot    { animation-name: ak-rise; animation-range: cover 47% cover 53%; }
+        .scene-art .a-record   { animation-name: ak-card; animation-range: cover 51% cover 58%; }
+        .scene-art .a-line     { animation-name: ak-fade; }
+        .scene-art .a-l1 { animation-range: cover 55% cover 59%; }
+        .scene-art .a-l2 { animation-range: cover 56% cover 60%; }
+        .scene-art .a-l3 { animation-range: cover 57% cover 61%; }
+        .scene-art .a-l4 { animation-range: cover 58% cover 62%; }
+
+        .dots i.on {
+          animation: ak-dot linear both; animation-duration: auto; animation-timeline: --dots;
+          animation-range: cover calc(12% + var(--r, 0) * 3%) cover calc(24% + var(--r, 0) * 3%);
+        }
+      }
+    }
+
     /* ---------- gap section ---------- */
     .bridge {
       margin-top: 2.2rem; padding: 1.4rem 1.6rem;
@@ -188,7 +346,16 @@
       margin-top: 1.3rem; font-size: clamp(1.05rem, 1.8vw, 1.25rem);
       line-height: 1.65; color: var(--paper); max-width: 42rem;
     }
-    .close-band .muted { color: var(--steel-light); margin-top: .6rem; }
+    .close-band .muted { color: var(--steel-light); margin-top: 1.2rem; }
+    .close-band .muted a { color: var(--paper); }
+    .pick { margin-top: 2.2rem; font-weight: 700; }
+    .pick span { font-weight: 400; color: var(--steel-light); }
+    .chips.on-dark { margin-top: 1rem; }
+    .chips.on-dark .chip {
+      background: transparent; color: var(--paper); border-color: rgba(125, 141, 156, .55);
+      text-decoration: none;
+    }
+    .chips.on-dark .chip:hover { border-color: var(--red); color: #fff; }
     .cta {
       display: inline-block; margin-top: 2.2rem;
       background: var(--red-text); color: #fff; font-weight: 700; text-decoration: none;
@@ -217,7 +384,21 @@
 </head>
 <body>
   <!-- ============================== HERO ============================== -->
-  <main>
+  <a class="skip" href="#main">Zum Inhalt springen</a>
+  <header class="site-header">
+    <div class="bar">
+      <a href="#main" aria-label="AeroKastell"><img class="logo" src="../assets/ak-logo-horizontal-reversed-v5.svg" alt="AeroKastell"></a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="#was">Funktionsweise</a>
+        <a href="#warum">Warum jetzt</a>
+        <a href="#anders">Was anders ist</a>
+        <a href="#anschauen">Film</a>
+      </nav>
+      <a class="lang" href="../index.html" lang="en" hreflang="en">EN</a>
+      <a class="btn" href="mailto:contact@aerokastell.com">Sprechen Sie uns an</a>
+    </div>
+  </header>
+  <main id="main">
   <section class="hero">
     <video class="hero-bg" autoplay muted loop playsinline preload="auto"
            poster="../assets/hero/ak-hero-loop-v02-poster.jpg" aria-hidden="true">
@@ -225,10 +406,6 @@
       <source src="../assets/hero/ak-hero-loop-v02.mp4" type="video/mp4">
     </video>
     <div class="content">
-      <div class="topbar">
-        <img class="logo" src="../assets/ak-logo-horizontal-reversed-v5.svg" alt="AeroKastell">
-        <a class="lang" href="../index.html" lang="en" hreflang="en">EN</a>
-      </div>
       <div class="hero-rule"></div>
       <h1>Beweise, nicht nur&nbsp;Alarme.</h1>
       <p class="lede">
@@ -238,8 +415,11 @@
         in die Video- und physischen Sicherheitsplattformen, die Sie bereits
         betreiben (VMS und PSIM): kein Parallelbetrieb.
       </p>
-      <p class="contact">Frühzeitig mit uns sprechen? <a href="mailto:contact@aerokastell.com">contact@aerokastell.com</a></p>
-      <p class="more"><a href="#was">Was wir entwickeln ↓</a></p>
+      <div class="hero-actions">
+        <a class="btn" href="mailto:contact@aerokastell.com">Sprechen Sie uns an</a>
+        <a class="ghost" href="#was">So funktioniert es ↓</a>
+      </div>
+      <p class="contact">Oder schreiben Sie an <a href="mailto:contact@aerokastell.com">contact@aerokastell.com</a></p>
     </div>
   </section>
 
@@ -254,6 +434,7 @@
         Häfen. Es überwacht den Luftraum über Ihrem Zaun und macht aus jedem Überflug
         Beweise.
       </p>
+      <figure class="scene"><!-- art:steps --><svg xmlns="http://www.w3.org/2000/svg" class="scene-art" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 330"><defs><mask id="ak-m-dome" maskUnits="userSpaceOnUse"><path class="a-reveal a-dome-r" d="M154 296 A226 226 0 0 1 606 296" pathLength="1" fill="none" stroke="#fff" stroke-width="12"/></mask><mask id="ak-m-ring" maskUnits="userSpaceOnUse"><path class="a-reveal a-ring-r" d="M94 296 A286 286 0 0 1 666 296" pathLength="1" fill="none" stroke="#fff" stroke-width="12"/></mask><mask id="ak-m-link" maskUnits="userSpaceOnUse"><path class="a-reveal a-link-r" d="M468 138 L828 266" pathLength="1" fill="none" stroke="#fff" stroke-width="10"/></mask></defs><path class="a-ground" d="M0 296 H1200" stroke="#5B6B7A" stroke-opacity=".45" stroke-width="1.5"/><path d="M94 296 A286 286 0 0 1 666 296" mask="url(#ak-m-ring)" fill="none" stroke="#5B6B7A" stroke-opacity=".35" stroke-width="1.5" stroke-dasharray="7 9"/><path d="M154 296 A226 226 0 0 1 606 296 Z" class="a-dome-fill" fill="#0B1F33" fill-opacity=".035"/><path d="M154 296 A226 226 0 0 1 606 296" mask="url(#ak-m-dome)" fill="none" stroke="#0B1F33" stroke-opacity=".5" stroke-width="2" stroke-dasharray="11 9"/><g class="a-site"><rect x="336" y="178" width="13" height="62" fill="#FFFFFF" stroke="#0B1F33" stroke-opacity=".42" stroke-width="1.6" stroke-linejoin="round"/><rect x="270" y="236" width="104" height="60" fill="#FFFFFF" stroke="#0B1F33" stroke-opacity=".42" stroke-width="1.6" stroke-linejoin="round"/><rect x="386" y="200" width="84" height="96" fill="#FFFFFF" stroke="#0B1F33" stroke-opacity=".42" stroke-width="1.6" stroke-linejoin="round"/><path d="M398 222 H458 M398 242 H458" fill="none" stroke="#0B1F33" stroke-opacity=".42" stroke-width="1.6" stroke-linecap="round"/><rect x="484" y="242" width="40" height="54" rx="9" fill="#FFFFFF" stroke="#0B1F33" stroke-opacity=".42" stroke-width="1.6" stroke-linejoin="round"/><rect x="532" y="242" width="40" height="54" rx="9" fill="#FFFFFF" stroke="#0B1F33" stroke-opacity=".42" stroke-width="1.6" stroke-linejoin="round"/><path d="M204 296 L219 168 H229 L244 296 M212 232 H236 M209 262 H239 M216 200 H232 M200 180 H248" fill="none" stroke="#0B1F33" stroke-opacity=".42" stroke-width="1.6" stroke-linecap="round"/></g><path class="a-track" d="M24 176 Q214 6 468 112" pathLength="1" fill="none" stroke="#E0383E" stroke-width="3.5" stroke-linecap="round"/><g class="a-drone"><path d="M468 112 L457.8 101.8" stroke="#0B1F33" stroke-width="2.4"/><circle cx="457.8" cy="101.8" r="5.1" fill="none" stroke="#0B1F33" stroke-width="1.7"/><path d="M468 112 L478.2 101.8" stroke="#0B1F33" stroke-width="2.4"/><circle cx="478.2" cy="101.8" r="5.1" fill="none" stroke="#0B1F33" stroke-width="1.7"/><path d="M468 112 L478.2 122.2" stroke="#0B1F33" stroke-width="2.4"/><circle cx="478.2" cy="122.2" r="5.1" fill="none" stroke="#0B1F33" stroke-width="1.7"/><path d="M468 112 L457.8 122.2" stroke="#0B1F33" stroke-width="2.4"/><circle cx="457.8" cy="122.2" r="5.1" fill="none" stroke="#0B1F33" stroke-width="1.7"/><rect x="464.6" y="108.6" width="6.8" height="6.8" rx="1.7" fill="#0B1F33"/></g><g class="a-lock"><path class="a-corner a-c1" d="M438.0 96.0 L438.0 82.0 L452.0 82.0" fill="none" stroke="#0B1F33" stroke-width="3" stroke-linecap="square"/><path class="a-corner a-c2" d="M498.0 96.0 L498.0 82.0 L484.0 82.0" fill="none" stroke="#0B1F33" stroke-width="3" stroke-linecap="square"/><path class="a-corner a-c3" d="M498.0 128.0 L498.0 142.0 L484.0 142.0" fill="none" stroke="#0B1F33" stroke-width="3" stroke-linecap="square"/><path class="a-corner a-c4" d="M438.0 128.0 L438.0 142.0 L452.0 142.0" fill="none" stroke="#0B1F33" stroke-width="3" stroke-linecap="square"/></g><path d="M468 138 L828 266" mask="url(#ak-m-link)" fill="none" stroke="#5B6B7A" stroke-opacity=".7" stroke-width="1.6" stroke-dasharray="4 6"/><g class="a-pilot"><ellipse cx="828" cy="296" rx="30" ry="7" fill="none" stroke="#FFB020" stroke-width="2"/><path d="M828 294 C824 284 814 276 814 264 A14 14 0 1 1 842 264 C842 276 832 284 828 294 Z" fill="#0B1F33"/><circle cx="828" cy="264" r="5" fill="#F4F2EE"/></g><g class="a-record"><rect x="966" y="64" width="190" height="232" rx="12" fill="#0B1F33"/><rect x="988" y="86" width="30" height="3" fill="#E0383E"/><rect x="988" y="100" width="96" height="8" rx="4" fill="#F4F2EE" fill-opacity=".9"/><rect x="988" y="122" width="146" height="64" rx="4" fill="#12304F"/><g opacity=".85"><path d="M1061.0 154 L1054.4 147.4" stroke="#F4F2EE" stroke-width="1.5"/><circle cx="1054.4" cy="147.4" r="3.3" fill="none" stroke="#F4F2EE" stroke-width="1.1"/><path d="M1061.0 154 L1067.6 147.4" stroke="#F4F2EE" stroke-width="1.5"/><circle cx="1067.6" cy="147.4" r="3.3" fill="none" stroke="#F4F2EE" stroke-width="1.1"/><path d="M1061.0 154 L1067.6 160.6" stroke="#F4F2EE" stroke-width="1.5"/><circle cx="1067.6" cy="160.6" r="3.3" fill="none" stroke="#F4F2EE" stroke-width="1.1"/><path d="M1061.0 154 L1054.4 160.6" stroke="#F4F2EE" stroke-width="1.5"/><circle cx="1054.4" cy="160.6" r="3.3" fill="none" stroke="#F4F2EE" stroke-width="1.1"/><rect x="1058.8" y="151.8" width="4.4" height="4.4" rx="1.1" fill="#F4F2EE"/></g><path d="M1041.0 143.0 L1041.0 134.0 L1050.0 134.0" fill="none" stroke="#F4F2EE" stroke-width="2" stroke-linecap="square"/><path d="M1081.0 143.0 L1081.0 134.0 L1072.0 134.0" fill="none" stroke="#F4F2EE" stroke-width="2" stroke-linecap="square"/><path d="M1081.0 165.0 L1081.0 174.0 L1072.0 174.0" fill="none" stroke="#F4F2EE" stroke-width="2" stroke-linecap="square"/><path d="M1041.0 165.0 L1041.0 174.0 L1050.0 174.0" fill="none" stroke="#F4F2EE" stroke-width="2" stroke-linecap="square"/><rect class="a-line a-l1" x="988" y="204" width="120" height="6" rx="3" fill="#F4F2EE" fill-opacity=".38"/><rect class="a-line a-l2" x="988" y="224" width="98" height="6" rx="3" fill="#F4F2EE" fill-opacity=".38"/><rect class="a-line a-l3" x="988" y="244" width="132" height="6" rx="3" fill="#F4F2EE" fill-opacity=".38"/><rect class="a-line a-l4" x="988" y="264" width="74" height="6" rx="3" fill="#F4F2EE" fill-opacity=".38"/></g></svg><!-- /art:steps --></figure>
       <div class="steps">
         <div class="step">
           <span class="no">01</span>
@@ -276,6 +457,24 @@
           <p>Jeder Schritt wird dokumentiert: eine vollständige, überprüfbare Aufzeichnung des Geschehens, bereit zur Vorlage bei Ihrem Vorstand, Ihren Revisoren und den Behörden.</p>
         </div>
       </div>
+      <div class="record-row">
+        <div class="record-text">
+          <h3>Jeder Überflug endet als Nachweis.</h3>
+          <p>Kein Alarm, der vom Bildschirm verschwindet, sondern ein Dokument: was geflogen ist,
+          was es war, wo der Pilot stand und wie es überprüft wurde. Derselbe Nachweis für
+          Standortleitung, Versicherer und Behörden.</p>
+        </div>
+        <figure class="record" aria-label="Illustration des Konzepts: ein Überflugprotokoll">
+          <figcaption class="record-head"><span class="record-title">Überflugprotokoll</span><span class="record-note">Illustration des Konzepts</span></figcaption>
+          <dl>
+            <div><dt>Erkannt</dt><dd>Radar, Funk, Akustik</dd></div>
+            <div><dt>Identifiziert</dt><dd>Unbekannte Drohne, nicht autorisiert</dd></div>
+            <div><dt>Pilot lokalisiert</dt><dd>Position erfasst</dd></div>
+            <div><dt>Dokumentiert</dt><dd>Vollständig und überprüfbar</dd></div>
+          </dl>
+          <p class="record-for">Für Management, Versicherer und Behörden</p>
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -295,9 +494,20 @@
         </div>
         <div class="reason">
           <h3><span>03 ·</span> Die Aufsicht schaut nach oben</h3>
-          <p>Die im Juli 2026 veröffentlichten EU-Leitlinien empfehlen Betreibern kritischer Standorte ausdrücklich, Drohnenerkennungsmaßnahmen umzusetzen. Heute ist es eine Empfehlung. Weitere Anforderungen werden folgen.</p>
+          <p>Die im Juli 2026 veröffentlichten EU-Leitlinien empfehlen Betreibern kritischer Standorte ausdrücklich, Drohnenerkennungsmaßnahmen umzusetzen. Heute ist es eine Empfehlung, keine Pflicht.</p>
         </div>
       </div>
+      <div class="stats">
+        <p class="stats-lead">Unter deutschen KRITIS-Betreibern, die Drohnen als Bedrohung sehen:</p>
+        <div class="stats-row">
+          <div class="stat"><!-- art:dots-overflights --><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><!-- /art:dots-overflights --><span class="num">54,7&nbsp;%</span><p>berichten von unbefugten oder sicherheitsrelevanten Drohnenflügen in den letzten 12 Monaten.</p></div>
+          <div class="stat"><!-- art:dots-no-detection --><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><!-- /art:dots-no-detection --><span class="num">46,5&nbsp;%</span><p>haben gar keine Drohnendetektion.</p></div>
+        </div>
+        <p class="dots-note">Ein Punkt entspricht einem Prozent.</p>
+      </div>
+      <p class="source-note">
+        Umfrage: BSKI/Droniq KRITIS-Umfrage 2026, August 2026, 104 Betreiber; Werte für die 86, die Drohnen als Bedrohung sehen.
+      </p>
       <p class="source-note">
         Referenz: Leitlinien der Kommission zur Anwendung von Artikel 13 Absatz 5 der CER-Richtlinie (EU) 2022/2557
         (C/2026/3712, 13. Juli 2026), Volltext unter <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=OJ%3AC_202603712" rel="noopener" target="_blank">eur-lex.europa.eu</a>
@@ -393,10 +603,11 @@
   <!-- ============================== ANSCHAUEN ============================== -->
   <section class="light" id="anschauen">
     <div class="wrap">
-      <p class="kicker">Anschauen</p>
+      <p class="kicker">Film</p>
       <h2>AeroKastell in Bewegung.</h2>
+      <p class="section-lede">So funktioniert es, in 57 Sekunden. Mit Ton.</p>
       <div class="video-frame">
-        <video controls preload="metadata" poster="../assets/video/ak-website-video-v02-poster.jpg">
+        <video controls playsinline preload="metadata" aria-label="AeroKastell-Film, 57 Sekunden" poster="../assets/video/ak-website-video-v02-poster.jpg">
           <source src="../assets/video/ak-website-video-v02.mp4" type="video/mp4">
         </video>
       </div>
@@ -405,15 +616,27 @@
 
   <!-- ============================== SCHLUSS ============================== -->
   <section class="close-band" id="kontakt">
+    <div class="watch"><!-- art:close --><svg xmlns="http://www.w3.org/2000/svg" class="watch-art" aria-hidden="true" focusable="false" viewBox="0 0 760 420"><path d="M0 404 H760" stroke="#7D8D9C" stroke-opacity=".35" stroke-width="1.5"/><path class="b-ring" d="M20.0 404 A360 360 0 0 1 740.0 404" fill="none" stroke="#7D8D9C" stroke-opacity=".28" stroke-width="1.5" stroke-dasharray="8 11"/><path class="b-dome" d="M110.0 404 A270 270 0 0 1 650.0 404" fill="none" stroke="#7D8D9C" stroke-opacity=".45" stroke-width="2" stroke-dasharray="12 10"/><path class="b-fill" d="M110.0 404 A270 270 0 0 1 650.0 404 Z" fill="#7D8D9C" fill-opacity=".05"/></svg><!-- /art:close --></div>
     <div class="wrap">
-      <h2>Sorgfältig gebaut.</h2>
+      <h2>Was fliegt heute Nacht über Ihrem Standort?</h2>
       <p class="big">
-        Wir entwickeln AeroKastell bewusst und sprechen derzeit mit einer kleinen Gruppe
-        von Betreibern und Partnern, die dasselbe Problem am selben Himmel sehen. Wenn
-        das auf Sie zutrifft, freuen wir uns auf Ihre Nachricht.
+        Wir entwickeln AeroKastell bewusst und sprechen zuerst mit einer kleinen Gruppe
+        europäischer Betreiber und Partner. Sagen Sie uns, was Sie schützen, und wir
+        besprechen, wie Detektion dort aussehen würde.
       </p>
-      <p class="muted">Erste Gespräche in Kürze.</p>
-      <a class="cta" href="mailto:contact@aerokastell.com">contact@aerokastell.com</a>
+      <p class="pick">Was schützen Sie? <span>Wählen Sie einen Bereich, und die E-Mail öffnet sich mit dieser Angabe.</span></p>
+      <div class="chips on-dark">
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20erstes%20Gespr%C3%A4ch%20%28Stromnetze%20%26%20Energie%29&amp;body=Was%20wir%20sch%C3%BCtzen%3A%20Stromnetze%20%26%20Energie%0ALand%3A%0AWas%20uns%20bei%20Drohnen%20am%20meisten%20besch%C3%A4ftigt%3A%0A">Stromnetze &amp; Energie</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20erstes%20Gespr%C3%A4ch%20%28%C3%96l%20%26%20Gas%29&amp;body=Was%20wir%20sch%C3%BCtzen%3A%20%C3%96l%20%26%20Gas%0ALand%3A%0AWas%20uns%20bei%20Drohnen%20am%20meisten%20besch%C3%A4ftigt%3A%0A">Öl &amp; Gas</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20erstes%20Gespr%C3%A4ch%20%28Verkehr%20%26%20Logistik%29&amp;body=Was%20wir%20sch%C3%BCtzen%3A%20Verkehr%20%26%20Logistik%0ALand%3A%0AWas%20uns%20bei%20Drohnen%20am%20meisten%20besch%C3%A4ftigt%3A%0A">Verkehr &amp; Logistik</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20erstes%20Gespr%C3%A4ch%20%28H%C3%A4fen%20%26%20Bahn%29&amp;body=Was%20wir%20sch%C3%BCtzen%3A%20H%C3%A4fen%20%26%20Bahn%0ALand%3A%0AWas%20uns%20bei%20Drohnen%20am%20meisten%20besch%C3%A4ftigt%3A%0A">Häfen &amp; Bahn</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20erstes%20Gespr%C3%A4ch%20%28Krankenh%C3%A4user%20%26%20Gesundheitswesen%29&amp;body=Was%20wir%20sch%C3%BCtzen%3A%20Krankenh%C3%A4user%20%26%20Gesundheitswesen%0ALand%3A%0AWas%20uns%20bei%20Drohnen%20am%20meisten%20besch%C3%A4ftigt%3A%0A">Krankenhäuser &amp; Gesundheitswesen</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20erstes%20Gespr%C3%A4ch%20%28Trink-%20%26%20Abwasser%29&amp;body=Was%20wir%20sch%C3%BCtzen%3A%20Trink-%20%26%20Abwasser%0ALand%3A%0AWas%20uns%20bei%20Drohnen%20am%20meisten%20besch%C3%A4ftigt%3A%0A">Trink- &amp; Abwasser</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20erstes%20Gespr%C3%A4ch%20%28Rechenzentren%20%26%20digitale%20Infrastruktur%29&amp;body=Was%20wir%20sch%C3%BCtzen%3A%20Rechenzentren%20%26%20digitale%20Infrastruktur%0ALand%3A%0AWas%20uns%20bei%20Drohnen%20am%20meisten%20besch%C3%A4ftigt%3A%0A">Rechenzentren &amp; digitale Infrastruktur</a>
+        <a class="chip" href="mailto:contact@aerokastell.com?subject=AeroKastell%3A%20erstes%20Gespr%C3%A4ch%20%28%C3%96ffentliche%20Verwaltung%29&amp;body=Was%20wir%20sch%C3%BCtzen%3A%20%C3%96ffentliche%20Verwaltung%0ALand%3A%0AWas%20uns%20bei%20Drohnen%20am%20meisten%20besch%C3%A4ftigt%3A%0A">Öffentliche Verwaltung</a>
+      </div>
+      <a class="cta" href="mailto:contact@aerokastell.com">Sprechen Sie uns an</a>
+      <p class="muted">Oder schreiben Sie an <a href="mailto:contact@aerokastell.com">contact@aerokastell.com</a>. Erste Gespräche in Kürze.</p>
     </div>
   </section>
   </main>
