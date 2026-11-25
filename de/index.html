@@ -57,16 +57,6 @@
     }
     .wrap { max-width: 64rem; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
 
-    /* ---------- language switcher ---------- */
-    .lang {
-      position: absolute; top: 1.2rem; right: 1.4rem; z-index: 2;
-      font-size: .82rem; font-weight: 700; letter-spacing: .14em;
-      color: var(--steel-light); text-decoration: none;
-      border: 1px solid rgba(125, 141, 156, .5); border-radius: 999px;
-      padding: .3rem .85rem;
-    }
-    .lang:hover { color: #fff; border-color: var(--red); }
-
     /* ---------- hero ---------- */
     .hero { position: relative; min-height: 100vh; overflow: hidden; background: var(--night); color: var(--paper); }
     .hero-bg {
@@ -85,12 +75,22 @@
       display: flex; flex-direction: column; min-height: 100vh;
     }
     .hero .content > * { max-width: 34rem; }  /* the original text measure; keeps clear of the motion on the right */
-    .logo { height: 64px; width: auto; margin-bottom: auto; align-self: flex-start; }
-    .hero-rule { width: 3rem; height: 2px; background: var(--red); margin: 3rem 0 .9rem; }
-    .eyebrow::after {
-      content: ""; display: block; width: 3rem; height: 2px;
-      background: var(--red); margin-top: .9rem;
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      margin-bottom: auto;
     }
+    .hero .content > .topbar { max-width: none; }  /* the switcher sits at the column's right edge */
+    .logo { height: 64px; width: auto; display: block; }
+    .lang {
+      flex-shrink: 0;
+      font-size: .82rem; font-weight: 700; letter-spacing: .14em;
+      color: var(--steel-light); text-decoration: none;
+      border: 1px solid rgba(125, 141, 156, .5); border-radius: 999px;
+      padding: .3rem .85rem;
+    }
+    .lang:hover { color: #fff; border-color: var(--red); }
+    .lang:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+    .hero-rule { width: 3rem; height: 2px; background: var(--red); margin: 3rem 0 .9rem; }
     h1 {
       margin-top: 1.6rem;
       font-weight: 900; font-size: clamp(2.2rem, 5vw, 3.4rem);
@@ -149,7 +149,7 @@
     .source-note a { color: var(--steel); }
 
     .diffs { margin-top: 2.5rem; display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
-    #different .diffs { grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }  /* four cards: 2 x 2, never 3 + 1 */
+    .diffs.four { grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }  /* four cards: 2 x 2, never 3 + 1 */
     .diff {
       background: var(--card); border: 1px solid var(--line); border-radius: 14px;
       padding: 1.5rem 1.4rem;
@@ -163,6 +163,7 @@
       background: var(--card); border: 1px solid var(--line); border-radius: 999px;
       padding: .45rem 1.1rem; font-size: .92rem; font-weight: 700; color: var(--ink);
     }
+    .chips + .section-lede { margin-top: 1.4rem; }
 
     /* ---------- gap section ---------- */
     .bridge {
@@ -174,7 +175,7 @@
 
     /* ---------- watch ---------- */
     .video-frame {
-      max-width: 56rem; margin: 2.2rem auto 0; aspect-ratio: 16 / 9;
+      margin-top: 2.2rem; aspect-ratio: 16 / 9;
       border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
       background: var(--night);
     }
@@ -218,22 +219,24 @@
   <!-- ============================== HERO ============================== -->
   <main>
   <section class="hero">
-    <a class="lang" href="../index.html" lang="en" hreflang="en">EN</a>
     <video class="hero-bg" autoplay muted loop playsinline preload="auto"
            poster="../assets/hero/ak-hero-loop-v02-poster.jpg" aria-hidden="true">
       <source src="../assets/hero/ak-hero-loop-v02.webm" type="video/webm">
       <source src="../assets/hero/ak-hero-loop-v02.mp4" type="video/mp4">
     </video>
     <div class="content">
-      <img class="logo" src="../assets/ak-logo-horizontal-reversed-v5.svg" alt="AeroKastell">
+      <div class="topbar">
+        <img class="logo" src="../assets/ak-logo-horizontal-reversed-v5.svg" alt="AeroKastell">
+        <a class="lang" href="../index.html" lang="en" hreflang="en">EN</a>
+      </div>
       <div class="hero-rule"></div>
       <h1>Beweise, nicht nur&nbsp;Alarme.</h1>
       <p class="lede">
         AeroKastell schützt kritische Standorte vor Drohnen:
         <strong>erkennen</strong>, <strong>identifizieren</strong>, den Piloten
         <strong>lokalisieren</strong> und es <strong>beweisen</strong>. Es integriert sich
-        in die Video- und physischen Sicherheitsplattformen, die Ihr Team bereits
-        betreibt: VMS und PSIM, die Sie schon haben. Kein Parallelbetrieb.
+        in die Video- und physischen Sicherheitsplattformen, die Sie bereits
+        betreiben (VMS und PSIM): kein Parallelbetrieb.
       </p>
       <p class="contact">Frühzeitig mit uns sprechen? <a href="mailto:contact@aerokastell.com">contact@aerokastell.com</a></p>
       <p class="more"><a href="#was">Was wir entwickeln ↓</a></p>
@@ -269,7 +272,7 @@
         </div>
         <div class="step">
           <span class="no">04</span>
-          <h3>Nachweisen</h3>
+          <h3>Beweisen</h3>
           <p>Jeder Schritt wird dokumentiert: eine vollständige, überprüfbare Aufzeichnung des Geschehens, bereit zur Vorlage bei Ihrem Vorstand, Ihren Revisoren und den Behörden.</p>
         </div>
       </div>
@@ -346,7 +349,7 @@
     <div class="wrap">
       <p class="kicker">Warum AeroKastell anders ist</p>
       <h2>Keine Warnbox. Kein Schlachtfeldsystem.</h2>
-      <div class="diffs">
+      <div class="diffs four">
         <div class="diff">
           <h3>Sieht, was andere <em>übersehen</em>.</h3>
           <p>Die meisten Systeme erkennen eine Drohne über ihr Funksignal. Stumme Drohnen, die wichtigsten, gehen direkt hindurch. Wir erkennen die Drohne über ihre physische Anwesenheit: Stille ändert nichts.</p>
@@ -382,7 +385,7 @@
         <span class="chip">Rechenzentren &amp; digitale Infrastruktur</span>
         <span class="chip">Öffentliche Verwaltung</span>
       </div>
-      <p class="section-lede" style="margin-top:1.4rem">Mehr als ein Standort? Derselbe
+      <p class="section-lede">Mehr als ein Standort? Derselbe
       Standard an jedem einzelnen, und alle in einer Übersicht.</p>
     </div>
   </section>
